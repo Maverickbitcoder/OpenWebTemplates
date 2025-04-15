@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Dark Theme Variables */
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --accent-primary: #00e5ff;
+            --accent-secondary: #ff00aa;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --game-bg: rgba(0, 0, 0, 0.5);
+            --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --border-color: rgba(150, 150, 150, 0.4);
+            --button-bg: rgba(0, 229, 255, 0.2);
+            --button-hover: rgba(0, 229, 255, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fly {
+            0% { transform: translateX(-100px) translateY(50vh) rotate(10deg); }
+            100% { transform: translateX(calc(100vw + 100px)) translateY(20vh) rotate(10deg); }
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3), 0 0 30px rgba(0, 229, 255, 0.1);
+            }
+            50% {
+                text-shadow: -2px 0 var(--accent-secondary), 2px 0 var(--accent-primary);
+            }
+            51% {
+                text-shadow: 2px 0 var(--accent-secondary), -2px 0 var(--accent-primary);
+            }
+            52% {
+                text-shadow: 0 0 10px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.3), 0 0 30px rgba(0, 229, 255, 0.1);
+            }
+        }
+
+        @keyframes pulse {
+            0% { background-color: rgba(124, 58, 237, 0.3); }
+            50% { background-color: rgba(124, 58, 237, 0.5); }
+            100% { background-color: rgba(124, 58, 237, 0.3); }
+        }
+
+        /* Stars Background */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        /* Planets */
+        .saturn {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background-image: radial-gradient(circle, #e3a952, #a06b2d);
+            border-radius: 50%;
+            bottom: -150px;
+            right: -80px;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+            z-index: -1;
+        }
+
+        .saturn::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 40px;
+            background: rgba(227, 169, 82, 0.5);
+            left: -50px;
+            top: 130px;
+            border-radius: 50%;
+            transform: rotate(-20deg);
+            box-shadow: 0 0 20px rgba(227, 169, 82, 0.3);
+        }
+
+        .moon {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background-image: radial-gradient(circle, #d7d7d7, #8a8a8a);
+            border-radius: 50%;
+            top: 120px;
+            left: 100px;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+            z-index: -1;
+        }
+
+        .moon::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(80, 80, 80, 0.6);
+            border-radius: 50%;
+            top: 30px;
+            left: 25px;
+        }
+
+        /* Spaceship */
+        .spaceship {
+            position: fixed;
+            width: 100px;
+            z-index: -1;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: fly 30s infinite linear;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Content Card */
+        .content {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--box-shadow);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Header Styling */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 5rem;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5),
+                        0 0 20px rgba(0, 229, 255, 0.3),
+                        0 0 30px rgba(0, 229, 255, 0.1);
+            animation: glitch 2s infinite;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p.subtitle {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--accent-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .header p.description {
+            color: var(--text-secondary);
+            margin: 0 auto;
+            max-width: 500px;
+        }
+
+        /* Game Container */
+        .game-container {
+            background: var(--game-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .game-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            text-align: center;
+        }
+
+        .game-instructions {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Game Board */
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--accent-primary);
+        }
+
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid var(--accent-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s;
+            position: relative;
+            min-height: 80px;
+        }
+
+        .cell:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .cell.x {
+            position: relative;
+        }
+
+        .cell.x::before,
+        .cell.x::after {
+            content: '';
+            position: absolute;
+            width: 10%;
+            height: 70%;
+            background: var(--accent-primary);
+            border-radius: 5px;
+            top: 15%;
+            left: 45%;
+        }
+
+        .cell.x::before {
+            transform: rotate(45deg);
+        }
+
+        .cell.x::after {
+            transform: rotate(-45deg);
+        }
+
+        .cell.o::before {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            border-radius: 50%;
+            border: 6px solid var(--accent-secondary);
+            box-sizing: border-box;
+        }
+
+        .cell.highlight {
+            background-color: rgba(124, 58, 237, 0.3);
+            animation: pulse 1s infinite;
+        }
+
+        /* Game Status */
+        .game-status {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            margin: 1.5rem 0;
+            color: var(--accent-primary);
+            min-height: 1.5rem;
+            text-align: center;
+        }
+
+        /* Button Styling */
+        .game-btn {
+            background: var(--button-bg);
+            border: none;
+            color: var(--text-primary);
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .game-btn:hover {
+            background: var(--button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 3.5rem;
+            }
+
+            .header p.subtitle {
+                font-size: 0.8rem;
+            }
+
+            .saturn {
+                width: 200px;
+                height: 200px;
+                bottom: -100px;
+                right: -50px;
+            }
+
+            .saturn::after {
+                width: 280px;
+                height: 30px;
+                left: -40px;
+                top: 90px;
+            }
+
+            .moon {
+                width: 70px;
+                height: 70px;
+                top: 80px;
+                left: 50px;
+            }
+
+            .moon::after {
+                width: 15px;
+                height: 15px;
+                top: 20px;
+                left: 18px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+
+            #game-board {
+                width: 250px;
+                height: 250px;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        /* Ensure scrolling works */
+        .spacer {
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Stars Background -->
+    <div id="stars"></div>
+
+    <!-- Planets -->
+    <div class="saturn"></div>
+    <div class="moon"></div>
+
+    <!-- Flying Spaceship -->
+    <div class="spaceship">
+        <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="25" rx="40" ry="15" fill="#555" />
+            <ellipse cx="50" cy="25" rx="30" ry="10" fill="#333" />
+            <ellipse cx="50" cy="25" rx="20" ry="7" fill="#00e5ff" opacity="0.5" />
+            <circle cx="75" cy="15" r="3" fill="#ff00aa" />
+            <circle cx="80" cy="25" r="3" fill="#00e5ff" />
+            <circle cx="75" cy="35" r="3" fill="#ff00aa" />
+        </svg>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <div class="content">
+            <!-- Header Section -->
+            <div class="header">
+                <h1>404</h1>
+                <p class="subtitle">PAGE NOT FOUND</p>
+                <p class="description">Oops! You've ventured too far into deep space. The page you're looking for doesn't exist or has been moved to another dimension.</p>
+            </div>
+
+            <!-- Game Container -->
+            <div class="game-container">
+                <div class="game-title">TIC-TAC-TOE</div>
+                <div class="game-instructions">Play against the computer. Click any cell to start!</div>
+
+                <div id="game-board"></div>
+
+                <div class="game-status" id="game-status">Your turn!</div>
+
+                <button class="game-btn" id="reset-btn">Reset Game</button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="/" class="btn">Back to Home</a>
+                <a href="/contact" class="btn">Contact Support</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for scrolling -->
+    <div class="spacer"></div>
+
+    <script>
+        // Generate stars for background when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate stars
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                // Random size for stars
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 3}s`;
+
+                starsContainer.appendChild(star);
+            }
+
+            // Tic-Tac-Toe Game Logic
+            const gameBoard = document.getElementById('game-board');
+            const gameStatus = document.getElementById('game-status');
+            const resetBtn = document.getElementById('reset-btn');
+
+            // Game state
+            let currentPlayer = 'x';
+            let gameState = ['', '', '', '', '', '', '', '', ''];
+            let gameActive = true;
+            let winningCells = [];
+
+            // Winning combinations
+            const winningConditions = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                [0, 4, 8], [2, 4, 6]             // diagonals
+            ];
+
+            // Create game board cells
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.setAttribute('data-index', i);
+                cell.addEventListener('click', () => handleCellClick(i));
+                gameBoard.appendChild(cell);
+            }
+
+            // Handle cell click
+            function handleCellClick(index) {
+                if (gameState[index] !== '' || !gameActive) {
+                    return;
+                }
+
+                // Update cell with player's mark
+                gameState[index] = currentPlayer;
+                updateBoard();
+
+                // Check for win or draw
+                checkResult();
+
+                // Switch players
+                currentPlayer = 'o';
+
+                // If game is still active, let computer make a move
+                if (gameActive && !checkWin() && !checkDraw()) {
+                    gameStatus.textContent = 'Computer is thinking...';
+                    setTimeout(() => {
+                        computerMove();
+                    }, 700);
+                }
+            }
+
+            // Computer move
+            function computerMove() {
+                if (!gameActive) return;
+
+                // Find empty cells
+                const emptyCells = gameState.reduce((acc, cell, index) => {
+                    if (cell === '') acc.push(index);
+                    return acc;
+                }, []);
+
+                if (emptyCells.length === 0) return;
+
+                // Choose a random empty cell
+                const randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+
+                // Update cell with computer's mark
+                gameState[randomIndex] = 'o';
+                updateBoard();
+
+                // Check for win or draw
+                checkResult();
+
+                // Switch back to player
+                currentPlayer = 'x';
+
+                // Update game status
+                if (gameActive && !checkWin() && !checkDraw()) {
+                    gameStatus.textContent = 'Your turn!';
+                }
+            }
+
+            // Update the visual board based on gameState
+            function updateBoard() {
+                const cells = document.querySelectorAll('.cell');
+                cells.forEach((cell, index) => {
+                    // Clear previous classes
+                    cell.classList.remove('x', 'o', 'highlight');
+
+                    // Add class based on gameState
+                    if (gameState[index] !== '') {
+                        cell.classList.add(gameState[index]);
+                    }
+
+                    // Add highlight for winning cells
+                    if (winningCells.includes(index)) {
+                        cell.classList.add('highlight');
+                    }
+                });
+            }
+
+            // Check for win
+            function checkWin() {
+                for (let i = 0; i < winningConditions.length; i++) {
+                    const [a, b, c] = winningConditions[i];
+                    if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+                        winningCells = [a, b, c];
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            // Check for draw
+            function checkDraw() {
+                return !gameState.includes('');
+            }
+
+            // Check game result
+            function checkResult() {
+                // Check for win
+                if (checkWin()) {
+                    gameStatus.textContent = gameState[winningCells[0]] === 'x' ? 'You won!' : 'Computer won!';
+                    gameActive = false;
+                    updateBoard(); // Update to show winning cells
+                    return;
+                }
+
+                // Check for draw
+                if (checkDraw()) {
+                    gameStatus.textContent = 'Game ended in a draw!';
+                    gameActive = false;
+                    return;
+                }
+            }
+
+            // Reset game
+            resetBtn.addEventListener('click', function() {
+                currentPlayer = 'x';
+                gameState = ['', '', '', '', '', '', '', '', ''];
+                gameActive = true;
+                gameStatus.textContent = 'Your turn!';
+                winningCells = [];
+                updateBoard();
+            });
+
+            // Ensure body has scrolling enabled
+            document.body.style.overflow = 'auto';
+            document.body.style.overflowX = 'hidden';
+        });
+    </script>
+</body>
+</html>
