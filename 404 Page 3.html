@@ -48,6 +48,41 @@
       --mouse-y: 50%;
       --rotate: 0deg;
       --planet-rotate: 0deg;
+      --meteor-duration: 2s;
+      }
+      @keyframes meteor {
+        0% {
+          transform: translate(120%, -120%) rotate(45deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-120%, 120%) rotate(45deg);
+          opacity: 0;
+        }
+      }
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+      }
+      @keyframes orbit {
+        from {
+          transform: rotate(0deg) translateX(150px) rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg) translateX(150px) rotate(-360deg);
+        }
       }
       @keyframes rotateIcon {
       0% { transform: rotate(0deg); }
@@ -89,7 +124,7 @@
       body {
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
-      background: linear-gradient(135deg, #000000, #111827);
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       position: relative;
@@ -100,18 +135,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://readdy.ai/api/search-image?query=deep%20space%20background%20with%20stars%2C%20nebulas%2C%20and%20distant%20galaxies%2C%20cosmic%20dust%2C%20dark%20matter%2C%20highly%20detailed%2C%20realistic%2C%208k%20resolution&width=1920&height=1080&seq=404bg1&orientation=landscape') center/cover no-repeat;
-      opacity: 0.3;
+      background: url('https://readdy.ai/api/search-image?query=minimal%20geometric%20pattern%20with%20soft%20pastel%20colors%2C%20light%20blue%20and%20white%20paper%20airplanes%20floating%20in%20a%20clear%20sky%20with%20subtle%20clouds%2C%20modern%20design%2C%20clean%20and%20minimalistic%20style%2C%20soft%20lighting&width=1920&height=1080&seq=404bg2&orientation=landscape') center/cover no-repeat;
+      opacity: 0.2;
       z-index: 0;
       }
-      .planet {
+      .paper-plane {
       position: absolute;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: url('https://readdy.ai/api/search-image?query=alien%20planet%20surface%20with%20craters%20and%20unique%20terrain%20features%2C%20mysterious%20atmosphere%2C%20sci-fi%20landscape%2C%20highly%20detailed&width=600&height=600&seq=404planet1&orientation=squarish') center/cover no-repeat;
-      animation: rotatePlanet 30s linear infinite;
-      box-shadow: 0 0 50px rgba(16, 185, 129, 0.3);
+      width: 400px;
+      height: 400px;
+      background: url('https://readdy.ai/api/search-image?query=3D%20rendered%20large%20paper%20airplane%20in%20white%20color%20with%20subtle%20shadows%20and%20highlights%2C%20floating%20in%20a%20bright%20environment%2C%20minimalistic%20design%2C%20clean%20and%20modern%20style&width=800&height=800&seq=404plane1&orientation=squarish') center/contain no-repeat;
+      animation: float 6s ease-in-out infinite;
       }
       @keyframes rotatePlanet {
       from { transform: rotate(0deg); }
@@ -129,12 +162,13 @@
       font-size: 10rem;
       font-weight: 800;
       color: transparent;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      background: linear-gradient(135deg, #10B981, #60A5FA);
       background-clip: text;
       -webkit-background-clip: text;
       position: relative;
       line-height: 1;
       letter-spacing: -0.05em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       }
       .error-number::before {
       content: "404";
@@ -227,39 +261,58 @@
   <body>
     <div class="space-bg"></div>
     <div
-      class="planet absolute top-1/2 -right-32 transform -translate-y-1/2"
+      class="meteor-container absolute w-full h-full overflow-hidden pointer-events-none"
+    ></div>
+    <div
+      class="paper-plane absolute top-1/2 -right-32 transform -translate-y-1/2"
     ></div>
     <div class="floating-elements" id="floating-elements"></div>
+    <div
+      class="orbiting-elements absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px]"
+    >
+      <div
+        class="satellite absolute w-8 h-8 flex items-center justify-center text-primary"
+        style="animation: orbit 8s linear infinite;"
+      >
+        <i class="ri-satellite-line ri-2x"></i>
+      </div>
+      <div
+        class="satellite absolute w-8 h-8 flex items-center justify-center text-secondary"
+        style="animation: orbit 12s linear infinite reverse;"
+      >
+        <i class="ri-rocket-line ri-2x"></i>
+      </div>
+    </div>
     <div
       class="error-container flex flex-col items-center justify-center px-4 relative z-10"
     >
       <div class="text-center max-w-lg">
         <div
-          class="astronaut-icon fade-in delay-1 mb-6 cursor-pointer"
-          id="astronaut-icon"
+          class="paper-plane-icon fade-in delay-1 mb-6 cursor-pointer"
+          id="paper-plane-icon"
         >
           <div
-            class="w-32 h-32 mx-auto flex items-center justify-center text-white hover:text-primary transition-colors duration-300"
+            class="w-32 h-32 mx-auto flex items-center justify-center text-primary hover:text-secondary transition-colors duration-300"
           >
             <i
-              class="ri-space-ship-fill ri-5x"
+              class="ri-send-plane-fill ri-5x"
               style="animation: float 3s ease-in-out infinite;"
             ></i>
           </div>
         </div>
         <h1 class="error-number fade-in delay-2" id="error-number">404</h1>
-        <h2 class="text-white text-3xl font-bold mt-6 mb-4 fade-in delay-3">
-          Houston, We Have a Problem! 🚀
+        <h2 class="text-gray-800 text-3xl font-bold mt-6 mb-4 fade-in delay-3">
+          Oops! Page Got Lost in Flight ✈️
         </h2>
-        <p class="text-gray-300 text-lg mb-10 fade-in delay-4">
-          Looks like you've drifted into unknown space. Let's get you back to
-          the mothership.
+        <p class="text-gray-600 text-lg mb-10 fade-in delay-4">
+          This page seems to have taken a detour. Let's navigate back to
+          familiar skies.
         </p>
         <a
           href="/"
           class="glow-button bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 !rounded-button shadow-lg inline-block whitespace-nowrap fade-in delay-4"
         >
-          Return to Earth
+          Return Home
         </a>
       </div>
     </div>
@@ -267,11 +320,11 @@
       function createFloatingElements() {
         const container = document.getElementById("floating-elements");
         const elements = [
-          "ri-rocket-line",
-          "ri-planet-line",
-          "ri-meteor-line",
-          "ri-alien-line",
-          "ri-satellite-line",
+          "ri-send-plane-line",
+          "ri-cloud-line",
+          "ri-compass-3-line",
+          "ri-map-pin-line",
+          "ri-flight-takeoff-line",
         ];
         const colors = ["#10B981", "#60A5FA", "#F472B6", "#34D399", "#FBBF24"];
         for (let i = 0; i < 15; i++) {
@@ -328,11 +381,41 @@
       document.addEventListener("DOMContentLoaded", function () {
         // Mouse move effect for glow
         const errorNumber = document.getElementById("error-number");
+        const meteorContainer = document.querySelector(".meteor-container");
+        // Create meteors
+        function createMeteor() {
+          const meteor = document.createElement("div");
+          meteor.className =
+            "absolute w-1 h-16 bg-gradient-to-b from-white to-transparent";
+          meteor.style.left = Math.random() * 100 + "%";
+          meteor.style.top = Math.random() * 100 + "%";
+          meteor.style.animation = `meteor var(--meteor-duration) linear forwards`;
+          meteorContainer.appendChild(meteor);
+
+          meteor.addEventListener("animationend", () => {
+            meteor.remove();
+          });
+        }
+        // Spawn meteors periodically
+        setInterval(createMeteor, 2000);
+        // Interactive mouse movement
         document.addEventListener("mousemove", (e) => {
           const mouseX = (e.clientX / window.innerWidth) * 100;
           const mouseY = (e.clientY / window.innerHeight) * 100;
           document.documentElement.style.setProperty("--mouse-x", `${mouseX}%`);
           document.documentElement.style.setProperty("--mouse-y", `${mouseY}%`);
+
+          // Create meteor on mouse move occasionally
+          if (Math.random() < 0.1) {
+            createMeteor();
+          }
+        });
+        // Add hover effect to error number
+        errorNumber.addEventListener("mouseenter", () => {
+          errorNumber.style.animation = "pulse 1s ease-in-out";
+        });
+        errorNumber.addEventListener("animationend", () => {
+          errorNumber.style.animation = "";
         });
         // For mobile, simulate movement
         if (window.innerWidth <= 768) {
