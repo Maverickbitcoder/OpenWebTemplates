@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#6366f1", secondary: "#8b5cf6" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      :root {
+      --glow-color: rgba(99, 102, 241, 0.7);
+      --mouse-x: 50%;
+      --mouse-y: 50%;
+      --rotate: 0deg;
+      }
+      @keyframes rotateIcon {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+      }
+      @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      }
+      .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      }
+      .floating-element {
+      position: absolute;
+      opacity: 0.2;
+      animation: float-around 20s linear infinite;
+      }
+      @keyframes float-around {
+      0% {
+      transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+      transform: translate(100px, 100px) rotate(90deg);
+      }
+      50% {
+      transform: translate(0, 200px) rotate(180deg);
+      }
+      75% {
+      transform: translate(-100px, 100px) rotate(270deg);
+      }
+      100% {
+      transform: translate(0, 0) rotate(360deg);
+      }
+      }
+      body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      }
+      @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+      }
+      .error-container {
+      min-height: 100vh;
+      }
+      .error-number {
+      font-size: 10rem;
+      font-weight: 800;
+      color: transparent;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      position: relative;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      }
+      .error-number::before {
+      content: "404";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      filter: blur(25px);
+      opacity: 0.7;
+      background: radial-gradient(
+      circle at var(--mouse-x) var(--mouse-y),
+      var(--glow-color) 0%,
+      transparent 50%
+      );
+      }
+      .glow-button {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      z-index: 1;
+      }
+      .glow-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(115deg, transparent, var(--glow-color), transparent);
+      transform: translateX(-100%);
+      z-index: -1;
+      }
+      .glow-button:hover::before {
+      animation: shine 1.5s infinite;
+      }
+      @keyframes shine {
+      100% {
+      transform: translateX(100%);
+      }
+      }
+      .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s forwards;
+      }
+      @keyframes fadeIn {
+      to {
+      opacity: 1;
+      transform: translateY(0);
+      }
+      }
+      .delay-1 { animation-delay: 0.2s; }
+      .delay-2 { animation-delay: 0.4s; }
+      .delay-3 { animation-delay: 0.6s; }
+      .delay-4 { animation-delay: 0.8s; }
+      .maintenance-icon {
+      font-size: 5rem;
+      animation: float 3s ease-in-out infinite;
+      }
+      @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+      }
+      .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      }
+      .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parallax-bg" id="stars"></div>
+    <div class="floating-elements" id="floating-elements"></div>
+    <div
+      class="error-container flex flex-col items-center justify-center px-4 relative z-10"
+    >
+      <div class="text-center max-w-lg">
+        <div
+          class="maintenance-icon fade-in delay-1 mb-6 cursor-pointer"
+          id="maintenance-icon"
+        >
+          <div
+            class="w-24 h-24 mx-auto flex items-center justify-center text-yellow-300 hover:text-yellow-400 transition-colors duration-300"
+          >
+            <i
+              class="ri-tools-fill ri-5x animate-spin"
+              style="animation-duration: 3s;"
+            ></i>
+          </div>
+        </div>
+        <h1 class="error-number fade-in delay-2" id="error-number">404</h1>
+        <h2 class="text-white text-3xl font-bold mt-6 mb-4 fade-in delay-3">
+          Oops! This page is taking a coffee break ☕
+        </h2>
+        <p class="text-gray-300 text-lg mb-10 fade-in delay-4">
+          We're under construction or you've wandered off the map.
+        </p>
+        <a
+          href="/"
+          class="glow-button bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 !rounded-button shadow-lg inline-block whitespace-nowrap fade-in delay-4"
+        >
+          Go Back Home
+        </a>
+      </div>
+    </div>
+    <script>
+      function createFloatingElements() {
+        const container = document.getElementById("floating-elements");
+        const elements = [
+          "ri-code-line",
+          "ri-bug-line",
+          "ri-terminal-box-line",
+          "ri-braces-line",
+          "ri-database-2-line",
+        ];
+        const colors = ["#6366f1", "#8b5cf6", "#ec4899", "#14b8a6", "#f59e0b"];
+        for (let i = 0; i < 15; i++) {
+          const element = document.createElement("div");
+          const randomElement = elements[Math.floor(Math.random() * elements.length)];
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          element.className = `floating-element ${randomElement}`;
+          element.style.color = randomColor;
+          element.style.fontSize = `${Math.random() * 20 + 10}px`;
+          element.style.left = `${Math.random() * 100}%`;
+          element.style.top = `${Math.random() * 100}%`;
+          element.style.animationDelay = `${Math.random() * 5}s`;
+          container.appendChild(element);
+        }
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        createFloatingElements();
+        const maintenanceIcon = document.getElementById("maintenance-icon");
+        maintenanceIcon.addEventListener("click", function () {
+          const icon = this.querySelector("i");
+          icon.style.animationDuration = "0.5s";
+          setTimeout(() => {
+            icon.style.animationDuration = "3s";
+          }, 1000);
+        });
+        // Create stars for parallax background
+        const starsContainer = document.getElementById("stars");
+        const starCount = 100;
+        for (let i = 0; i < starCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+          // Random size between 1 and 3px
+          const size = Math.random() * 2 + 1;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          // Random position
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          // Random opacity
+          star.style.opacity = Math.random() * 0.5 + 0.1;
+          starsContainer.appendChild(star);
+        }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Apply fade-in animations with delay
+        const fadeElements = document.querySelectorAll(".fade-in");
+        fadeElements.forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = 1;
+            el.style.transform = "translateY(0)";
+          }, 200 * index);
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mouse move effect for glow
+        const errorNumber = document.getElementById("error-number");
+        document.addEventListener("mousemove", (e) => {
+          const mouseX = (e.clientX / window.innerWidth) * 100;
+          const mouseY = (e.clientY / window.innerHeight) * 100;
+          document.documentElement.style.setProperty("--mouse-x", `${mouseX}%`);
+          document.documentElement.style.setProperty("--mouse-y", `${mouseY}%`);
+        });
+        // For mobile, simulate movement
+        if (window.innerWidth <= 768) {
+          let x = 0;
+          let y = 0;
+          let dirX = 1;
+          let dirY = 1;
+          setInterval(() => {
+            x += 0.5 * dirX;
+            y += 0.3 * dirY;
+            if (x >= 100 || x <= 0) dirX *= -1;
+            if (y >= 100 || y <= 0) dirY *= -1;
+            document.documentElement.style.setProperty("--mouse-x", `${x}%`);
+            document.documentElement.style.setProperty("--mouse-y", `${y}%`);
+          }, 50);
+        }
+      });
+    </script>
+  </body>
+</html>
