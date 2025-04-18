@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#3b82f6", secondary: "#64748b" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Inter', sans-serif;
+          background-color: #f9fafb;
+      }
+      .sidebar {
+          width: 280px;
+          transition: all 0.3s ease;
+      }
+      .main-content {
+          width: calc(100% - 280px);
+          transition: all 0.3s ease;
+      }
+      .sidebar.collapsed {
+          width: 80px;
+      }
+      .main-content.expanded {
+          width: calc(100% - 80px);
+      }
+      .sidebar.collapsed .nav-text {
+          display: none;
+      }
+      .sidebar.collapsed .logo-text {
+          display: none;
+      }
+      .sidebar.collapsed .user-info {
+          display: none;
+      }
+      .sidebar.collapsed .nav-item {
+          justify-content: center;
+      }
+      .chart-container {
+          height: 100px;
+      }
+      .toggle-switch {
+          position: relative;
+          display: inline-block;
+          width: 46px;
+          height: 24px;
+      }
+      .toggle-switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+      .toggle-slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          transition: .4s;
+          border-radius: 24px;
+      }
+      .toggle-slider:before {
+          position: absolute;
+          content: "";
+          height: 18px;
+          width: 18px;
+          left: 3px;
+          bottom: 3px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+      input:checked + .toggle-slider {
+          background-color: #3b82f6;
+      }
+      input:checked + .toggle-slider:before {
+          transform: translateX(22px);
+      }
+      input[type="range"] {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 6px;
+          background: #e5e7eb;
+          border-radius: 5px;
+          outline: none;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          background: #3b82f6;
+          border-radius: 50%;
+          cursor: pointer;
+      }
+      .custom-checkbox {
+          position: relative;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+      }
+      .custom-checkbox input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+      }
+      .checkmark {
+          height: 20px;
+          width: 20px;
+          background-color: #fff;
+          border: 2px solid #d1d5db;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .custom-checkbox input:checked ~ .checkmark {
+          background-color: #3b82f6;
+          border-color: #3b82f6;
+      }
+      .checkmark:after {
+          content: "";
+          display: none;
+      }
+      .custom-checkbox input:checked ~ .checkmark:after {
+          display: block;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+          margin-bottom: 2px;
+      }
+      @media (max-width: 1024px) {
+          .sidebar {
+              width: 80px;
+          }
+          .main-content {
+              width: calc(100% - 80px);
+          }
+          .nav-text, .logo-text, .user-info {
+              display: none;
+          }
+          .nav-item {
+              justify-content: center;
+          }
+          .sidebar.mobile-expanded {
+              width: 280px;
+              z-index: 50;
+          }
+          .sidebar.mobile-expanded .nav-text,
+          .sidebar.mobile-expanded .logo-text,
+          .sidebar.mobile-expanded .user-info {
+              display: block;
+          }
+          .sidebar.mobile-expanded .nav-item {
+              justify-content: flex-start;
+          }
+          .overlay {
+              display: none;
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: rgba(0, 0, 0, 0.5);
+              z-index: 40;
+          }
+          .overlay.active {
+              display: block;
+          }
+      }
+      @media (max-width: 640px) {
+          .sidebar {
+              position: fixed;
+              left: -280px;
+              width: 280px;
+              z-index: 50;
+          }
+          .sidebar.mobile-expanded {
+              left: 0;
+          }
+          .main-content {
+              width: 100%;
+          }
+          .mobile-menu-btn {
+              display: flex !important;
+          }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="sidebar bg-white shadow-lg h-screen fixed top-0 left-0 flex flex-col"
+      >
+        <!-- Logo -->
+        <div class="p-6 flex items-center">
+          <div
+            class="w-8 h-8 flex items-center justify-center text-primary text-2xl"
+          >
+            <i class="ri-dashboard-line"></i>
+          </div>
+          <h1 class="logo-text text-xl font-['Pacifico'] ml-3 text-gray-800">
+            logo
+          </h1>
+        </div>
+
+        <!-- User Profile -->
+        <div class="user-info px-6 py-4 border-b border-gray-100">
+          <div class="flex items-center">
+            <div
+              class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
+            >
+              <span class="text-primary font-medium">JD</span>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-800">John Doe</p>
+              <p class="text-xs text-gray-500">Premium User</p>
+            </div>
+          </div>
+        </div>
+        <!-- Navigation -->
+        <nav class="flex-1 py-6 px-3">
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="#"
+                class="nav-item flex items-center px-3 py-3 rounded-md bg-primary/10 text-primary"
+              >
+                <div class="w-6 h-6 flex items-center justify-center">
+                  <i class="ri-home-line"></i>
+                </div>
+                <span class="nav-text ml-3 font-medium">Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="nav-item flex items-center px-3 py-3 rounded-md text-gray-600 hover:bg-gray-100"
+              >
+                <div class="w-6 h-6 flex items-center justify-center">
+                  <i class="ri-user-line"></i>
+                </div>
+                <span class="nav-text ml-3">Profile</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="nav-item flex items-center px-3 py-3 rounded-md text-gray-600 hover:bg-gray-100"
+              >
+                <div class="w-6 h-6 flex items-center justify-center">
+                  <i class="ri-settings-line"></i>
+                </div>
+                <span class="nav-text ml-3">Settings</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="nav-item flex items-center px-3 py-3 rounded-md text-gray-600 hover:bg-gray-100"
+              >
+                <div class="w-6 h-6 flex items-center justify-center">
+                  <i class="ri-notification-line"></i>
+                  <span
+                    class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"
+                  ></span>
+                </div>
+                <span class="nav-text ml-3">Notifications</span>
+                <span
+                  class="nav-text ml-auto text-xs bg-red-500 text-white px-2 py-0.5 rounded-full"
+                  >3</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="nav-item flex items-center px-3 py-3 rounded-md text-gray-600 hover:bg-gray-100"
+              >
+                <div class="w-6 h-6 flex items-center justify-center">
+                  <i class="ri-file-list-line"></i>
+                </div>
+                <span class="nav-text ml-3">Reports</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="nav-item flex items-center px-3 py-3 rounded-md text-gray-600 hover:bg-gray-100"
+              >
+                <div class="w-6 h-6 flex items-center justify-center">
+                  <i class="ri-team-line"></i>
+                </div>
+                <span class="nav-text ml-3">Team</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Bottom Actions -->
+        <div class="p-6 border-t border-gray-100">
+          <div class="flex items-center justify-between mb-4">
+            <span class="nav-text text-sm text-gray-600">Dark Mode</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="darkModeToggle" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <a
+            href="#"
+            class="nav-item flex items-center px-3 py-3 rounded-md text-red-500 hover:bg-red-50"
+          >
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-logout-box-line"></i>
+            </div>
+            <span class="nav-text ml-3">Logout</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content ml-auto p-6">
+        <!-- Mobile Menu Button -->
+        <button
+          class="mobile-menu-btn fixed top-4 left-4 z-50 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center md:hidden hidden"
+        >
+          <i class="ri-menu-line text-gray-700"></i>
+        </button>
+
+        <!-- Welcome Section -->
+        <div class="mb-8">
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between"
+          >
+            <div>
+              <h1 class="text-2xl font-bold text-gray-800">
+                Welcome back, John!
+              </h1>
+              <p class="text-gray-500" id="currentDateTime">
+                Friday, April 18, 2025 | 10:30 AM
+              </p>
+            </div>
+            <div class="mt-4 md:mt-0">
+              <div class="relative">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  class="pl-10 pr-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-full md:w-64 text-sm"
+                />
+                <div
+                  class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center text-gray-400"
+                >
+                  <i class="ri-search-line"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="flex flex-wrap gap-2 mt-6">
+            <button
+              class="flex items-center px-4 py-2 bg-primary text-white rounded-button hover:bg-primary/90 whitespace-nowrap"
+            >
+              <div class="w-4 h-4 flex items-center justify-center mr-2">
+                <i class="ri-user-settings-line"></i>
+              </div>
+              Update Profile
+            </button>
+            <button
+              class="flex items-center px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-button hover:bg-gray-50 whitespace-nowrap"
+            >
+              <div class="w-4 h-4 flex items-center justify-center mr-2">
+                <i class="ri-download-line"></i>
+              </div>
+              Download Report
+            </button>
+            <button
+              class="flex items-center px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-button hover:bg-gray-50 whitespace-nowrap"
+            >
+              <div class="w-4 h-4 flex items-center justify-center mr-2">
+                <i class="ri-customer-service-line"></i>
+              </div>
+              Contact Support
+            </button>
+          </div>
+        </div>
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <!-- Total Logins Card -->
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <p class="text-sm font-medium text-gray-500">Total Logins</p>
+                <h3 class="text-2xl font-bold text-gray-800 mt-1">247</h3>
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+              >
+                <i class="ri-login-circle-line"></i>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-4 h-4 flex items-center justify-center text-green-500"
+              >
+                <i class="ri-arrow-up-line"></i>
+              </div>
+              <span class="text-xs font-medium text-green-500 ml-1">12.5%</span>
+              <span class="text-xs text-gray-500 ml-2">from last month</span>
+            </div>
+            <div class="chart-container mt-3" id="loginChart"></div>
+          </div>
+
+          <!-- Last Activity Card -->
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <p class="text-sm font-medium text-gray-500">Last Activity</p>
+                <h3 class="text-2xl font-bold text-gray-800 mt-1">
+                  2 hours ago
+                </h3>
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+              >
+                <i class="ri-time-line"></i>
+              </div>
+            </div>
+            <p class="text-sm text-gray-500">Password changed at 8:45 AM</p>
+            <div class="chart-container mt-3" id="activityChart"></div>
+          </div>
+
+          <!-- Messages Card -->
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <p class="text-sm font-medium text-gray-500">Messages</p>
+                <h3 class="text-2xl font-bold text-gray-800 mt-1">18</h3>
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+              >
+                <i class="ri-message-3-line"></i>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div
+                class="w-4 h-4 flex items-center justify-center text-red-500"
+              >
+                <i class="ri-arrow-down-line"></i>
+              </div>
+              <span class="text-xs font-medium text-red-500 ml-1">5.2%</span>
+              <span class="text-xs text-gray-500 ml-2">from last week</span>
+            </div>
+            <div class="chart-container mt-3" id="messageChart"></div>
+          </div>
+          <!-- Tasks Card -->
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <p class="text-sm font-medium text-gray-500">Tasks Completed</p>
+                <h3 class="text-2xl font-bold text-gray-800 mt-1">64%</h3>
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+              >
+                <i class="ri-task-line"></i>
+              </div>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+              <div class="bg-primary h-2 rounded-full" style="width: 64%"></div>
+            </div>
+            <p class="text-xs text-gray-500">16 of 25 tasks completed</p>
+          </div>
+        </div>
+
+        <!-- Recent Activity & Tasks Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Recent Activity Feed -->
+          <div
+            class="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-100 p-6"
+          >
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-lg font-bold text-gray-800">Recent Activity</h2>
+              <button
+                class="text-sm text-primary hover:text-primary/80 whitespace-nowrap"
+              >
+                View All
+              </button>
+            </div>
+
+            <div class="space-y-6">
+              <div class="flex">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-500"
+                >
+                  <i class="ri-lock-password-line"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-sm font-medium text-gray-800">
+                    Password Changed
+                  </h4>
+                  <p class="text-xs text-gray-500 mt-1">
+                    You changed your password successfully
+                  </p>
+                  <p class="text-xs text-gray-400 mt-1">Today at 8:45 AM</p>
+                </div>
+              </div>
+
+              <div class="flex">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500"
+                >
+                  <i class="ri-file-upload-line"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-sm font-medium text-gray-800">
+                    New Document Uploaded
+                  </h4>
+                  <p class="text-xs text-gray-500 mt-1">
+                    You uploaded a new document: "Q1 Financial Report.pdf"
+                  </p>
+                  <p class="text-xs text-gray-400 mt-1">Yesterday at 2:30 PM</p>
+                </div>
+              </div>
+
+              <div class="flex">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-500"
+                >
+                  <i class="ri-team-line"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-sm font-medium text-gray-800">
+                    Team Meeting Scheduled
+                  </h4>
+                  <p class="text-xs text-gray-500 mt-1">
+                    New team meeting scheduled for April 20, 2025
+                  </p>
+                  <p class="text-xs text-gray-400 mt-1">
+                    Yesterday at 11:15 AM
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-500"
+                >
+                  <i class="ri-notification-line"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-sm font-medium text-gray-800">
+                    New Notification Settings
+                  </h4>
+                  <p class="text-xs text-gray-500 mt-1">
+                    You updated your notification preferences
+                  </p>
+                  <p class="text-xs text-gray-400 mt-1">
+                    April 16, 2025 at 4:20 PM
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-500"
+                >
+                  <i class="ri-login-circle-line"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-sm font-medium text-gray-800">
+                    New Login Detected
+                  </h4>
+                  <p class="text-xs text-gray-500 mt-1">
+                    New login from San Francisco, CA
+                  </p>
+                  <p class="text-xs text-gray-400 mt-1">
+                    April 15, 2025 at 9:30 AM
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tasks & Reminders -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-lg font-bold text-gray-800">Tasks & Reminders</h2>
+              <button
+                class="text-sm text-primary hover:text-primary/80 whitespace-nowrap"
+              >
+                Add New
+              </button>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <label class="custom-checkbox">
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <div class="ml-3">
+                  <h4 class="text-sm font-medium text-gray-800">
+                    Complete Q1 Report
+                  </h4>
+                  <p class="text-xs text-gray-500">Due today</p>
+                </div>
+                <div class="ml-auto">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600"
+                  >
+                    <i class="ri-more-2-fill"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <label class="custom-checkbox">
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <div class="ml-3">
+                  <h4 class="text-sm font-medium text-gray-800">
+                    Review Marketing Strategy
+                  </h4>
+                  <p class="text-xs text-gray-500">Due tomorrow</p>
+                </div>
+                <div class="ml-auto">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600"
+                  >
+                    <i class="ri-more-2-fill"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <label class="custom-checkbox">
+                  <input type="checkbox" checked />
+                  <span class="checkmark"></span>
+                </label>
+                <div class="ml-3">
+                  <h4 class="text-sm font-medium text-gray-400 line-through">
+                    Schedule Team Meeting
+                  </h4>
+                  <p class="text-xs text-gray-400">Completed</p>
+                </div>
+                <div class="ml-auto">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600"
+                  >
+                    <i class="ri-more-2-fill"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <label class="custom-checkbox">
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <div class="ml-3">
+                  <h4 class="text-sm font-medium text-gray-800">
+                    Update Client Presentation
+                  </h4>
+                  <p class="text-xs text-gray-500">Due April 22, 2025</p>
+                </div>
+                <div class="ml-auto">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600"
+                  >
+                    <i class="ri-more-2-fill"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <label class="custom-checkbox">
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <div class="ml-3">
+                  <h4 class="text-sm font-medium text-gray-800">
+                    Prepare Monthly Budget
+                  </h4>
+                  <p class="text-xs text-gray-500">Due April 25, 2025</p>
+                </div>
+                <div class="ml-auto">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600"
+                  >
+                    <i class="ri-more-2-fill"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-gray-100">
+              <h3 class="text-sm font-medium text-gray-700 mb-4">
+                Project Progress
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-xs mb-1">
+                    <span class="text-gray-600">Website Redesign</span>
+                    <span class="text-gray-800 font-medium">75%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-primary h-2 rounded-full"
+                      style="width: 75%"
+                    ></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs mb-1">
+                    <span class="text-gray-600">Mobile App Development</span>
+                    <span class="text-gray-800 font-medium">45%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-primary h-2 rounded-full"
+                      style="width: 45%"
+                    ></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs mb-1">
+                    <span class="text-gray-600">Marketing Campaign</span>
+                    <span class="text-gray-800 font-medium">90%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      class="bg-primary h-2 rounded-full"
+                      style="width: 90%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="overlay"></div>
+    <script>
+      // Update date and time
+      function updateDateTime() {
+        const now = new Date();
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        };
+        document.getElementById("currentDateTime").textContent =
+          now.toLocaleDateString("en-US", options);
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        updateDateTime();
+        setInterval(updateDateTime, 60000); // Update every minute
+
+        // Toggle sidebar on desktop
+        const toggleBtn = document.querySelector(".toggle-btn");
+        const sidebar = document.querySelector(".sidebar");
+        const mainContent = document.querySelector(".main-content");
+
+        if (toggleBtn) {
+          toggleBtn.addEventListener("click", function () {
+            sidebar.classList.toggle("collapsed");
+            mainContent.classList.toggle("expanded");
+          });
+        }
+
+        // Mobile menu
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+        const overlay = document.querySelector(".overlay");
+
+        if (mobileMenuBtn) {
+          mobileMenuBtn.addEventListener("click", function () {
+            sidebar.classList.toggle("mobile-expanded");
+            overlay.classList.toggle("active");
+          });
+        }
+
+        if (overlay) {
+          overlay.addEventListener("click", function () {
+            sidebar.classList.remove("mobile-expanded");
+            overlay.classList.remove("active");
+          });
+        }
+
+        // Show mobile menu button on small screens
+        function handleResize() {
+          if (window.innerWidth <= 640) {
+            mobileMenuBtn.style.display = "flex";
+          } else {
+            mobileMenuBtn.style.display = "none";
+          }
+        }
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Login Chart
+        const loginChart = echarts.init(document.getElementById("loginChart"));
+        loginChart.setOption({
+          animation: false,
+          grid: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          },
+          xAxis: {
+            type: "category",
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            show: false,
+          },
+          yAxis: {
+            type: "value",
+            show: false,
+          },
+          series: [
+            {
+              data: [18, 24, 20, 30, 26, 28, 32],
+              type: "line",
+              smooth: true,
+              symbol: "none",
+              lineStyle: {
+                color: "rgba(87, 181, 231, 1)",
+              },
+              areaStyle: {
+                color: {
+                  type: "linear",
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [
+                    {
+                      offset: 0,
+                      color: "rgba(87, 181, 231, 0.2)",
+                    },
+                    {
+                      offset: 1,
+                      color: "rgba(87, 181, 231, 0.01)",
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        });
+
+        // Activity Chart
+        const activityChart = echarts.init(document.getElementById("activityChart"));
+        activityChart.setOption({
+          animation: false,
+          grid: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          },
+          xAxis: {
+            type: "category",
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            show: false,
+          },
+          yAxis: {
+            type: "value",
+            show: false,
+          },
+          series: [
+            {
+              data: [5, 8, 12, 6, 10, 15, 8],
+              type: "bar",
+              barWidth: "60%",
+              itemStyle: {
+                color: "rgba(141, 211, 199, 1)",
+                borderRadius: [4, 4, 0, 0],
+              },
+            },
+          ],
+        });
+
+        // Message Chart
+        const messageChart = echarts.init(document.getElementById("messageChart"));
+        messageChart.setOption({
+          animation: false,
+          grid: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          },
+          xAxis: {
+            type: "category",
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            show: false,
+          },
+          yAxis: {
+            type: "value",
+            show: false,
+          },
+          series: [
+            {
+              data: [12, 18, 15, 22, 16, 18, 14],
+              type: "line",
+              smooth: true,
+              symbol: "none",
+              lineStyle: {
+                color: "rgba(251, 191, 114, 1)",
+              },
+              areaStyle: {
+                color: {
+                  type: "linear",
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [
+                    {
+                      offset: 0,
+                      color: "rgba(251, 191, 114, 0.2)",
+                    },
+                    {
+                      offset: 1,
+                      color: "rgba(251, 191, 114, 0.01)",
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        });
+
+        // Handle window resize
+        window.addEventListener("resize", function () {
+          loginChart.resize();
+          activityChart.resize();
+          messageChart.resize();
+        });
+      });
+
+      // Dark mode toggle
+      document.addEventListener("DOMContentLoaded", function () {
+        const darkModeToggle = document.getElementById("darkModeToggle");
+
+        darkModeToggle.addEventListener("change", function () {
+          if (this.checked) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
