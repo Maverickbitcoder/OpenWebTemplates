@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join the waitlist for Innovate - the revolutionary platform that's changing the future of work.">
+    <meta name="keywords" content="innovate, waitlist, startup, technology, future">
+    <meta property="og:title" content="Innovate - Join Our Waitlist">
+    <meta property="og:description" content="Be the first to experience our groundbreaking platform that will change the way you work.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://innovate.com">
+    <meta property="og:image" content="https://innovate.com/og-image.jpg">
+    <title>Innovate - Revolutionary Platform | Join Our Waitlist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS VARIABLES */
+        :root {
+            /* Colors - Light Theme */
+            --primary-color: #3A56E4;
+            --primary-light: #5E78FF;
+            --primary-dark: #2A46C4;
+            --secondary-color: #FF4A6D;
+            --secondary-light: #FF6B8E;
+            --secondary-dark: #E03A5D;
+            --accent-color: #FFB74D;
+            --accent-light: #FFCA7A;
+            --accent-dark: #F29A30;
+            --text-color: #1A2333;
+            --text-light: #515B6F;
+            --text-muted: #8892A8;
+            --bg-color: #ffffff;
+            --bg-alt: #F8FAFD;
+            --card-bg: #f9f9f9;
+            --border-color: #E9EDF5;
+            --shadow-color: rgba(53, 64, 143, 0.08);
+            --shadow-intense: rgba(53, 64, 143, 0.15);
+            --success-color: #4CAF50;
+            --error-color: #F44336;
+            --warning-color: #FFC107;
+            --info-color: #2196F3;
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
+            --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            --gradient-hero: linear-gradient(135deg, rgba(58, 86, 228, 0.9), rgba(255, 74, 109, 0.9));
+
+            /* Typography */
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            --font-accent: 'Poppins', 'SF Pro Display', sans-serif;
+
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 8rem;
+
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+
+            /* Transitions */
+            --transition-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+
+            /* Misc */
+            --header-height: 70px;
+            --shadow-default: 0 4px 20px var(--shadow-color);
+            --shadow-hover: 0 10px 30px var(--shadow-intense);
+        }
+
+        /* Dark Theme Variables */
+        [data-theme="dark"] {
+            --primary-color: #5E78FF;
+            --primary-light: #7A90FF;
+            --primary-dark: #4A64E0;
+            --secondary-color: #FF6B8E;
+            --secondary-light: #FF8CA8;
+            --secondary-dark: #E0547A;
+            --accent-color: #FFB74D;
+            --accent-light: #FFCA7A;
+            --accent-dark: #F29A30;
+            --text-color: #F8F9FB;
+            --text-light: #D1D5DB;
+            --text-muted: #9CA3AF;
+            --bg-color: #0F172A;
+            --bg-alt: #1E293B;
+            --card-bg: #1E293B;
+            --border-color: #334155;
+            --shadow-color: rgba(0, 0, 0, 0.25);
+            --shadow-intense: rgba(0, 0, 0, 0.4);
+
+            /* Gradients */
+            --gradient-hero: linear-gradient(135deg, rgba(58, 86, 228, 0.8), rgba(255, 74, 109, 0.8));
+        }
+
+        /* RESET & BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body.theme-transition {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition-fast);
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            outline: none;
+            transition: var(--transition-fast);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: var(--radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        /* LAYOUT */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section-title {
+            font-family: var(--font-accent);
+            font-size: 2.2rem;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--bg-color);
+            box-shadow: 0 2px 10px var(--shadow-color);
+            transition: all var(--transition-normal);
+        }
+
+        header.header-scrolled {
+            padding: 5px 0;
+            box-shadow: 0 5px 20px var(--shadow-intense);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+        }
+
+        .logo {
+            font-family: var(--font-accent);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: var(--spacing-md);
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border-radius: var(--radius-full);
+            color: var(--text-color);
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--border-color);
+            transform: rotate(15deg);
+        }
+
+        .theme-toggle.clicked {
+            animation: spin 0.5s var(--transition-bounce);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .mobile-menu-btn.clicked {
+            transform: rotate(90deg);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-hero), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern><radialGradient id="grad" cx="50%" cy="50%" r="70%" fx="50%" fy="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.15);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:1" /></radialGradient></defs><rect width="100%" height="100%" fill="%233A56E4"/><rect width="100%" height="100%" fill="url(%23grad)" /><rect width="100%" height="100%" fill="url(%23grid)" /></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            text-align: center;
+            padding-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="40" stroke-dasharray="50 30" /></svg>');
+            opacity: 0.3;
+            z-index: 0;
+            animation: rotate 60s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Text gradient styles */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* Floating elements animations */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            filter: blur(10px);
+        }
+
+        .e1 {
+            width: 100px;
+            height: 100px;
+            background-color: var(--secondary-color);
+            top: 20%;
+            left: 10%;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .e2 {
+            width: 150px;
+            height: 150px;
+            background-color: var(--primary-light);
+            top: 60%;
+            left: 15%;
+            animation: float 18s ease-in-out infinite 2s;
+        }
+
+        .e3 {
+            width: 80px;
+            height: 80px;
+            background-color: var(--accent-color);
+            top: 30%;
+            right: 20%;
+            animation: float 12s ease-in-out infinite 1s;
+        }
+
+        .e4 {
+            width: 120px;
+            height: 120px;
+            background-color: var(--primary-dark);
+            bottom: 20%;
+            right: 10%;
+            animation: float 20s ease-in-out infinite 3s;
+        }
+
+        .e5 {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary-light);
+            bottom: 40%;
+            left: 50%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-20px, 20px) rotate(5deg); }
+            50% { transform: translate(10px, -30px) rotate(-5deg); }
+            75% { transform: translate(20px, 20px) rotate(3deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        /* Waitlist count styling */
+        .waitlist-count {
+            margin-top: var(--spacing-md);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            animation: fadeInUp 1s var(--transition-normal) 0.9s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .count-number {
+            font-weight: 700;
+            color: var(--secondary-light);
+        }
+
+        .count-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Checkbox styling */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkbox-label {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            display: inline-block;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            user-select: none;
+        }
+
+        .checkbox-label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            background-color: white;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked + .checkbox-label:before {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-label:after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 3px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked + .checkbox-label:after {
+            opacity: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: var(--font-accent);
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s var(--transition-normal) forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s var(--transition-normal) 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* WAITLIST FORM */
+        .waitlist-form-container {
+            background-color: rgba(255, 255, 255, 0.98);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s var(--transition-normal) 0.6s forwards;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .waitlist-form-container.pulse-highlight {
+            animation: pulse-border 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25); }
+            50% { box-shadow: 0 15px 40px rgba(var(--primary-color), 0.5); }
+        }
+
+        .waitlist-form-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+            opacity: 0.05;
+            z-index: 0;
+            animation: pulse 10s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.05; }
+            50% { transform: scale(1.05); opacity: 0.08; }
+            100% { transform: scale(1); opacity: 0.05; }
+        }
+
+        .waitlist-form, .waitlist-form-content {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-title {
+            color: var(--text-color);
+            font-family: var(--font-accent);
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition-normal);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all var(--transition-normal);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(58, 86, 228, 0.15);
+            outline: none;
+            background-color: white;
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        .form-input.error {
+            border-color: var(--error-color);
+        }
+
+        .error-message {
+            display: none;
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 5px;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .submit-btn {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(58, 86, 228, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gradient-secondary);
+            transition: width 0.4s ease;
+            z-index: -1;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(58, 86, 228, 0.4);
+        }
+
+        .submit-btn:hover::before {
+            width: 100%;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .btn-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover .btn-icon {
+            transform: translateX(5px);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .form-footer {
+            margin-top: var(--spacing-md);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .waitlist-success {
+            display: none;
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+        }
+
+        .waitlist-success.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--success-color);
+            margin-bottom: var(--spacing-md);
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
+
+        .success-title {
+            font-family: var(--font-accent);
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-color);
+        }
+
+        .success-message {
+            color: var(--text-light);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background-color: var(--bg-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            transition: var(--transition-fast);
+        }
+
+        .social-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            background-color: var(--bg-alt);
+            padding: var(--spacing-xl) 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .feature-card {
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-default);
+            transition: var(--transition-normal);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: var(--primary-color);
+            opacity: 0.05;
+            transition: height 0.5s ease;
+            z-index: -1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-card:hover::before {
+            height: 100%;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
+
+        .feature-title {
+            font-family: var(--font-accent);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(58, 86, 228, 0.3);
+            position: relative;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: 60%;
+            background-color: rgba(255, 255, 255, 0.1);
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-title {
+            font-family: var(--font-accent);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-color);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
+
+        .about-description {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        /* TIMELINE SECTION */
+        .timeline {
+            background-color: var(--bg-alt);
+            padding: var(--spacing-xl) 0;
+        }
+
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item.left {
+            left: 0;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--bg-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-default);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .testimonial-container {
+            overflow: hidden;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-default);
+            border-radius: var(--radius-lg);
+        }
+
+        .testimonial-slide {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            background-color: var(--card-bg);
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .testimonial-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        .testimonial-quote::before,
+        .testimonial-quote::after {
+            content: '"';
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            opacity: 0.5;
+            position: absolute;
+        }
+
+        .testimonial-quote::before {
+            top: -20px;
+            left: -10px;
+        }
+
+        .testimonial-quote::after {
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-family: var(--font-accent);
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: var(--spacing-md);
+        }
+
+        .testimonial-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .testimonial-dot.active {
+            background-color: var(--primary-color);
+            width: 30px;
+            border-radius: var(--radius-full);
+        }
+
+        /* CALL TO ACTION */
+        .cta {
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.1)" stroke-width="6" fill="none"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cta-title {
+            font-family: var(--font-accent);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-md);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition-normal);
+            text-decoration: none;
+            margin-top: var(--spacing-sm);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: rgba(0, 0, 0, 0.05);
+            transition: height 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover::before {
+            height: 100%;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: var(--spacing-lg) 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .footer-logo {
+            font-family: var(--font-accent);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-description {
+            margin-bottom: var(--spacing-md);
+            color: #bbb;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-sm);
+            color: #fff;
+            font-family: var(--font-accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .footer-link a {
+            color: #bbb;
+            transition: var(--transition-fast);
+        }
+
+        .footer-link a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: var(--transition-fast);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid #333;
+            color: #bbb;
+        }
+
+        /* NOTIFICATION */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: var(--radius-md);
+            color: white;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            max-width: 350px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .notification.success {
+            background-color: var(--success-color);
+        }
+
+        .notification.error {
+            background-color: var(--error-color);
+        }
+
+        .notification.info {
+            background-color: var(--info-color);
+        }
+
+        .notification.warning {
+            background-color: var(--warning-color);
+        }
+
+        /* SCROLL TO TOP */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 900;
+            font-size: 1.5rem;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .scroll-top.clicked {
+            animation: pulse 0.5s ease;
+        }
+
+        /* ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .typed-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background-color: currentColor;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .timeline-container::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item.right {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+                right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--bg-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: var(--spacing-lg);
+                transition: var(--transition-normal);
+                z-index: 999;
+                box-shadow: 0 10px 20px var(--shadow-color);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 0 0 var(--spacing-md) 0;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-title {
+                font-size: 2rem;
+            }
+
+            .waitlist-form-container {
+                padding: var(--spacing-md);
+            }
+
+            .notification {
+                left: 20px;
+                right: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SCROLL TO TOP BUTTON -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">Innovate</a>
+
+            <nav>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#roadmap" class="nav-link">Roadmap</a></li>
+                    <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                </ul>
+            </nav>
+
+            <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION WITH WAITLIST FORM -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="text-gradient">Revolutionizing</span> The Future
+                </h1>
+                <p class="hero-subtitle">Join our waitlist to be the first to experience our groundbreaking platform that will change the way you work.</p>
+
+                <div class="waitlist-form-container">
+                    <div class="waitlist-form-content">
+                        <h2 class="form-title">Join Our Waitlist</h2>
+                        <form class="waitlist-form" id="waitlistForm">
+                            <div class="form-group">
+                                <label for="full_name" class="form-label">Full Name</label>
+                                <input type="text" id="full_name" name="full_name" class="form-input" placeholder="Enter your full name" required>
+                                <div class="error-message" id="nameError">Please enter your full name</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address" required>
+                                <div class="error-message" id="emailError">Please enter a valid email address</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="newsletter" name="newsletter" checked>
+                                    <label for="newsletter" class="checkbox-label">
+                                        I want to receive updates about Innovate
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <span class="btn-text">Join Waitlist</span>
+                                <span class="btn-icon">→</span>
+                            </button>
+                            <p class="form-footer">By joining, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></p>
+                        </form>
+                    </div>
+
+                    <div class="waitlist-success" id="waitlistSuccess">
+                        <div class="success-icon">✓</div>
+                        <h3 class="success-title">You're on the list!</h3>
+                        <p class="success-message">Thanks for joining our waitlist. We'll notify you when we launch.</p>
+                        <p class="success-message">Share with friends to get priority access:</p>
+                        <div class="social-share">
+                            <a href="#" class="social-btn" aria-label="Share on Twitter">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Share on Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Share on LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="waitlist-count">
+                    <div class="count-number" id="waitlistCount">1,384</div>
+                    <div class="count-label">people already joined</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated floating elements -->
+        <div class="floating-elements">
+            <div class="floating-element e1"></div>
+            <div class="floating-element e2"></div>
+            <div class="floating-element e3"></div>
+            <div class="floating-element e4"></div>
+            <div class="floating-element e5"></div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Features</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-description">Our platform utilizes cutting-edge technology to deliver unprecedented speed and performance, saving you valuable time.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Secure & Private</h3>
+                    <p class="feature-description">Your data is protected with the highest level of security and privacy standards in the industry, giving you peace of mind.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Available Everywhere</h3>
+                    <p class="feature-description">Access our platform from any device, anywhere in the world, with a seamless experience that adapts to your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Innovate</h2>
+            <div class="about-content">
+                <div class="about-image fade-in">Our Vision</div>
+                <div class="about-text">
+                    <h3 class="about-title fade-in">We're Changing The Game</h3>
+                    <p class="about-description fade-in">At Innovate, we believe in a future where technology enhances every aspect of human life, making it more efficient, sustainable, and enjoyable.</p>
+                    <p class="about-description fade-in">Founded in 2025, our team of experts from diverse backgrounds have come together with a single mission: to revolutionize how people interact with technology in their daily lives.</p>
+                    <p class="about-description fade-in">Our platform is the result of years of research, development, and a deep understanding of what users really need. We're not just building another app; we're creating an ecosystem that will fundamentally change the way you work and live.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP/TIMELINE SECTION -->
+    <section class="timeline" id="roadmap">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Roadmap</h2>
+            <div class="timeline-container">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Q2 2025</div>
+                        <h3>Private Beta Launch</h3>
+                        <p>Initial release to our early access community with core features and functionality.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Q3 2025</div>
+                        <h3>Public Beta Release</h3>
+                        <p>Expanded access with enhanced features based on initial user feedback.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Q4 2025</div>
+                        <h3>Official Launch</h3>
+                        <p>Full product release with complete feature set and enterprise solutions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Q1 2026</div>
+                        <h3>Global Expansion</h3>
+                        <p>International market entry with localized solutions and strategic partnerships.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in">What Early Users Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">I've been part of the beta testing for Innovate, and I can confidently say it's the most promising platform I've ever used. It has dramatically improved my workflow and saved me countless hours.</p>
+                        <p class="testimonial-author">— Sarah Johnson, Marketing Director</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">The attention to detail and user experience is unparalleled. This platform solves problems I didn't even know I had. I'm excited to see how it evolves in the future.</p>
+                        <p class="testimonial-author">— Michael Chen, Software Engineer</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">As a small business owner, finding efficient solutions is crucial. Innovate has streamlined our operations and helped us focus on what truly matters - growing our business.</p>
+                        <p class="testimonial-author">— Jessica Rivera, Entrepreneur</p>
+                    </div>
+                </div>
+                <div class="testimonial-nav">
+                    <div class="testimonial-dot active" data-index="0"></div>
+                    <div class="testimonial-dot" data-index="1"></div>
+                    <div class="testimonial-dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">Ready to Transform Your Experience?</h2>
+            <p class="cta-subtitle">Join thousands of forward-thinking professionals who are already on our waitlist. Be among the first to experience the future.</p>
+            <a href="#" class="cta-button" id="scrollToForm">Join Waitlist Now</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div>
+                    <div class="footer-logo">Innovate</div>
+                    <p class="footer-description">Building the future of technology, one innovation at a time.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Home</a></li>
+                        <li class="footer-link"><a href="#features">Features</a></li>
+                        <li class="footer-link"><a href="#about">About Us</a></li>
+                        <li class="footer-link"><a href="#roadmap">Roadmap</a></li>
+                        <li class="footer-link"><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link">Email: hello@innovate.com</li>
+                        <li class="footer-link">Phone: +1 (555) 123-4567</li>
+                        <li class="footer-link">Address: 123 Tech Ave, San Francisco, CA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Innovate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- NOTIFICATION -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // DOM Elements
+        const body = document.body;
+        const themeToggle = document.querySelector('.theme-toggle');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const notification = document.getElementById('notification');
+        const waitlistForm = document.getElementById('waitlistForm');
+        const waitlistSuccess = document.getElementById('waitlistSuccess');
+        const waitlistFormContent = document.querySelector('.waitlist-form-content');
+        const scrollTopBtn = document.getElementById('scrollTop');
+        const scrollToFormBtn = document.getElementById('scrollToForm');
+        const testimonialSlide = document.querySelector('.testimonial-slide');
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const fullNameInput = document.getElementById('full_name');
+        const emailInput = document.getElementById('email');
+        const countElement = document.getElementById('waitlistCount');
+
+        // Theme Toggle with animation
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            // Add transition class for smooth theme change
+            body.classList.add('theme-transition');
+
+            // Set the new theme
+            body.setAttribute('data-theme', newTheme);
+            themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+
+            // Remove transition class after animation completes
+            setTimeout(() => {
+                body.classList.remove('theme-transition');
+            }, 1000);
+
+            // Save theme preference
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Initialize theme from localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+            themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+        }
+
+        // Mobile Menu Toggle with animation
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.add('clicked');
+            navMenu.classList.toggle('active');
+
+            setTimeout(() => {
+                mobileMenuBtn.classList.remove('clicked');
+            }, 300);
+        });
+
+        // Smooth Scroll for Navigation with enhanced easing
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (!targetElement) return;
+
+                    const targetPosition = targetElement.offsetTop - 80;
+
+                    // Smooth scroll with cubic-bezier easing
+                    scrollToElement(targetPosition, 1000);
+
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+
+                    // Set active nav link with animation
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        link.style.transition = 'all 0.3s ease';
+                    });
+
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Custom smooth scroll function with easing
+        function scrollToElement(to, duration) {
+            const start = window.pageYOffset;
+            const change = to - start;
+            let currentTime = 0;
+            const increment = 20;
+
+            const easeInOutQuad = (t, b, c, d) => {
+                t /= d/2;
+                if (t < 1) return c/2*t*t + b;
+                t--;
+                return -c/2 * (t*(t-2) - 1) + b;
+            };
+
+            const animateScroll = () => {
+                currentTime += increment;
+                const val = easeInOutQuad(currentTime, start, change, duration);
+                window.scrollTo(0, val);
+                if (currentTime < duration) {
+                    requestAnimationFrame(animateScroll);
+                }
+            };
+
+            animateScroll();
+        }
+
+        // Scroll to form from CTA button with bounce effect
+        if (scrollToFormBtn) {
+            scrollToFormBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const formElement = document.querySelector('.waitlist-form-container');
+
+                // Highlight form with pulse animation
+                formElement.classList.add('pulse-highlight');
+
+                // Scroll to form
+                const formPosition = formElement.getBoundingClientRect().top + window.pageYOffset - 100;
+                scrollToElement(formPosition, 800);
+
+                // Remove highlight after animation completes
+                setTimeout(() => {
+                    formElement.classList.remove('pulse-highlight');
+                }, 1500);
+            });
+        }
+
+        // Form input enhancement with real-time validation
+        if (fullNameInput && emailInput) {
+            // Real-time validation for name
+            fullNameInput.addEventListener('input', () => {
+                validateName(fullNameInput.value);
+            });
+
+            // Real-time validation for email
+            emailInput.addEventListener('input', () => {
+                validateEmail(emailInput.value);
+            });
+
+            // Blur validation
+            fullNameInput.addEventListener('blur', () => {
+                validateName(fullNameInput.value, true);
+            });
+
+            emailInput.addEventListener('blur', () => {
+                validateEmail(emailInput.value, true);
+            });
+        }
+
+        // Name validation
+        function validateName(name, showError = false) {
+            if (!name || name.trim().length < 3) {
+                if (showError) {
+                    fullNameInput.classList.add('error');
+                    nameError.classList.add('show');
+                }
+                return false;
+            } else {
+                fullNameInput.classList.remove('error');
+                nameError.classList.remove('show');
+                return true;
+            }
+        }
+
+        // Email validation
+        function validateEmail(email, showError = false) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                if (showError) {
+                    emailInput.classList.add('error');
+                    emailError.classList.add('show');
+                }
+                return false;
+            } else {
+                emailInput.classList.remove('error');
+                emailError.classList.remove('show');
+                return true;
+            }
+        }
+
+        // Handle Waitlist Form Submission with enhanced UX
+        if (waitlistForm) {
+            waitlistForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const fullName = fullNameInput.value;
+                const email = emailInput.value;
+                const newsletter = document.getElementById('newsletter').checked;
+
+                // Validate inputs
+                const isNameValid = validateName(fullName, true);
+                const isEmailValid = validateEmail(email, true);
+
+                if (!isNameValid || !isEmailValid) {
+                    showNotification('Please check your inputs and try again', 'error');
+                    return;
+                }
+
+                // Show loading state
+                const submitBtn = waitlistForm.querySelector('.submit-btn');
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="loading-spinner"></span> Joining...';
+                submitBtn.disabled = true;
+
+                // Simulate form submission delay (remove in production and replace with actual API call)
+                setTimeout(() => {
+                    // In a real implementation, you would send this data to your server via fetch or axios
+
+                    // Save entry
+                    const entry = saveEntry(fullName, email, newsletter);
+                    console.log('Waitlist sign-up:', entry);
+
+                    // Update waitlist count with animation
+                    updateWaitlistCount();
+
+                    // Show success view
+                    waitlistFormContent.style.display = 'none';
+                    waitlistSuccess.classList.add('show');
+
+                    // Reset form for future use
+                    waitlistForm.reset();
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+
+                    // Show success notification
+                    showNotification('Successfully joined our waitlist!', 'success');
+                }, 1500);
+            });
+        }
+
+        // Counter animation for waitlist count
+        function updateWaitlistCount() {
+            const finalCount = waitlistEntries.length;
+            const startCount = parseInt(countElement.textContent.replace(/,/g, ''));
+            const duration = 1500;
+            const frameRate = 30;
+            const totalFrames = duration / (1000 / frameRate);
+            let currentFrame = 0;
+
+            const animate = () => {
+                currentFrame++;
+                const progress = currentFrame / totalFrames;
+                const currentCount = Math.floor(startCount + (finalCount - startCount) * progress);
+
+                // Format with commas
+                countElement.textContent = currentCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+                if (currentFrame < totalFrames) {
+                    requestAnimationFrame(animate);
+                }
+            };
+
+            animate();
+        }
+
+        // Enhanced scroll event handler with throttling
+        let lastScrollTime = 0;
+
+        window.addEventListener('scroll', () => {
+            const now = Date.now();
+
+            // Throttle scroll events to improve performance
+            if (now - lastScrollTime > 50) {
+                lastScrollTime = now;
+
+                const scrollPosition = window.scrollY;
+
+                // Header transform on scroll
+                const header = document.querySelector('header');
+                if (scrollPosition > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+
+                // Show/hide scroll to top button with opacity transition
+                if (scrollPosition > 300) {
+                    scrollTopBtn.classList.add('show');
+                } else {
+                    scrollTopBtn.classList.remove('show');
+                }
+
+                // Active nav highlighting
+                highlightActiveSection(scrollPosition);
+
+                // Animate elements when they come into view
+                animateOnScroll();
+            }
+        });
+
+        // Separate function for active section highlighting
+        function highlightActiveSection(scrollPosition) {
+            const sections = document.querySelectorAll('section[id]');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Improved scroll to top with easing
+        scrollTopBtn.addEventListener('click', () => {
+            scrollToElement(0, 800);
+
+            // Add click effect
+            scrollTopBtn.classList.add('clicked');
+            setTimeout(() => {
+                scrollTopBtn.classList.remove('clicked');
+            }, 300);
+        });
+
+        // Enhanced notification system
+        function showNotification(message, type) {
+            // Hide any existing notification first
+            notification.classList.remove('show');
+
+            // Set up new notification
+            setTimeout(() => {
+                notification.textContent = message;
+                notification.className = `notification ${type}`;
+                notification.classList.add('show');
+
+                // Auto-dismiss after delay
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }, 300);
+        }
+
+        // Enhanced testimonial slider with touch support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Add touch event listeners
+        testimonialSlide.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+
+            // Pause auto-rotation
+            clearInterval(testimonialInterval);
+        }, { passive: true });
+
+        testimonialSlide.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+
+            // Resume auto-rotation
+            testimonialInterval = setInterval(advanceTestimonial, 5000);
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe left - next testimonial
+                testimonialIndex = (testimonialIndex + 1) % testimonialCount;
+                updateTestimonialSlide();
+            }
+
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe right - previous testimonial
+                testimonialIndex = (testimonialIndex - 1 + testimonialCount) % testimonialCount;
+                updateTestimonialSlide();
+            }
+        }
+
+        // Click controls for testimonials
+        testimonialDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                testimonialIndex = parseInt(dot.getAttribute('data-index'));
+                updateTestimonialSlide();
+
+                // Reset auto-rotation timer
+                clearInterval(testimonialInterval);
+                testimonialInterval = setInterval(advanceTestimonial, 5000);
+            });
+        });
+
+        // Function to update testimonial slide position
+        function updateTestimonialSlide() {
+            // Add transition class for smooth animation
+            testimonialSlide.style.transition = "transform 0.5s ease";
+
+            // Update position
+            testimonialSlide.style.transform = `translateX(-${testimonialIndex * 100}%)`;
+
+            // Update active dot
+            testimonialDots.forEach(d => d.classList.remove('active'));
+            testimonialDots[testimonialIndex].classList.add('active');
+        }
+
+        // Auto-advance testimonials with improved timing
+        let testimonialIndex = 0;
+        const testimonialCount = testimonialDots.length;
+
+        function advanceTestimonial() {
+            testimonialIndex = (testimonialIndex + 1) % testimonialCount;
+            updateTestimonialSlide();
+        }
+
+        // Initialize testimonial rotation
+        let testimonialInterval = setInterval(advanceTestimonial, 5000);
+
+        // Pause testimonial rotation on hover or focus
+        const testimonialContainer = document.querySelector('.testimonial-container');
+
+        testimonialContainer.addEventListener('mouseenter', () => {
+            clearInterval(testimonialInterval);
+        });
+
+        testimonialContainer.addEventListener('mouseleave', () => {
+            testimonialInterval = setInterval(advanceTestimonial, 5000);
+        });
+
+        testimonialContainer.addEventListener('focusin', () => {
+            clearInterval(testimonialInterval);
+        });
+
+        testimonialContainer.addEventListener('focusout', () => {
+            testimonialInterval = setInterval(advanceTestimonial, 5000);
+        });
+
+        // Enhanced animations for scroll elements
+        function animateOnScroll() {
+            // Improved animation threshold logic
+            const animateElement = (element, className, threshold = 100) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight - threshold) {
+                    element.classList.add(className);
+                }
+            };
+
+            // Fade in general elements
+            fadeElements.forEach(element => {
+                animateElement(element, 'show');
+            });
+
+            // Timeline items with staggered animation
+            timelineItems.forEach((item, index) => {
+                // Add staggered delay based on index
+                setTimeout(() => {
+                    animateElement(item, 'visible', 150);
+                }, index * 100);
+            });
+        }
+
+        // Document ready event handler
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial animation check
+            animateOnScroll();
+
+            // Initialize waitlist entries
+            loadWaitlistEntries();
+        });
+
+        // Store waitlist entries
+        let waitlistEntries = [];
+
+        // Functions to store entries in localStorage
+        function saveEntry(fullName, email, newsletter) {
+            const entry = {
+                fullName,
+                email,
+                newsletter,
+                date: new Date().toISOString()
+            };
+
+            waitlistEntries.push(entry);
+            localStorage.setItem('waitlistEntries', JSON.stringify(waitlistEntries));
+            return entry;
+        }
+
+        function loadWaitlistEntries() {
+            try {
+                const storedEntries = localStorage.getItem('waitlistEntries');
+                if (storedEntries) {
+                    waitlistEntries = JSON.parse(storedEntries);
+
+                    // Update count display if we have entries
+                    if (waitlistEntries.length > 0) {
+                        // Add a random number between 1200-1500 to simulate existing users
+                        const baseCount = Math.floor(Math.random() * 300) + 1200;
+                        const totalCount = baseCount + waitlistEntries.length;
+                        countElement.textContent = totalCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+                }
+            } catch (e) {
+                console.log('Error loading waitlist entries', e);
+                waitlistEntries = [];
+            }
+        }
+
+        // Add intersection observer for more optimized animations
+        if ('IntersectionObserver' in window) {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('fade-in')) {
+                            entry.target.classList.add('show');
+                        } else if (entry.target.classList.contains('timeline-item')) {
+                            entry.target.classList.add('visible');
+                        }
+
+                        // Unobserve after animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserve r(observerCallback, observerOptions);
+
+            // Observe fade elements
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Observe timeline items
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+        }
+    </script>
+</body>
+</html>
