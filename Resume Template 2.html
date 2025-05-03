@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Resume</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#4B88A2", secondary: "#FF6B6B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      }
+      body {
+      background-color: #f8f9fa;
+      color: #2A2D34;
+      overflow-x: hidden;
+      }
+      .resume-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      }
+      .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      filter: blur(40px);
+      z-index: -1;
+      animation: float 15s ease-in-out infinite;
+      }
+      .shape1 {
+      width: 300px;
+      height: 300px;
+      background: #4B88A2;
+      top: 10%;
+      left: -150px;
+      animation-delay: 0s;
+      }
+      .shape2 {
+      width: 200px;
+      height: 200px;
+      background: #FF6B6B;
+      top: 40%;
+      right: -100px;
+      animation-delay: 5s;
+      }
+      .shape3 {
+      width: 250px;
+      height: 250px;
+      background: #6B66FF;
+      bottom: 10%;
+      left: -120px;
+      animation-delay: 10s;
+      }
+      @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+      }
+      .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      }
+      .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      }
+      .profile-pic::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(transparent, rgba(255,255,255,0.3), transparent);
+      transform: rotate(30deg);
+      transition: all 0.8s ease;
+      opacity: 0;
+      }
+      .profile-pic:hover::after {
+      left: 100%;
+      opacity: 1;
+      }
+      .typewriter {
+      overflow: hidden;
+      border-right: 3px solid #4B88A2;
+      white-space: nowrap;
+      margin: 0 auto;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      }
+      @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+      }
+      @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #4B88A2 }
+      }
+      .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+      }
+      .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background: #4B88A2;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      }
+      .social-link:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(75, 136, 162, 0.4);
+      }
+      .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.1);
+      transform: scale(0);
+      transition: all 0.3s ease;
+      border-radius: 50%;
+      }
+      .social-link:hover::before {
+      transform: scale(1.5);
+      opacity: 0;
+      }
+      .skill-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: #e9ecef;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      }
+      .skill-progress {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #4B88A2, #6B66FF);
+      position: relative;
+      width: 0;
+      transition: width 1.5s ease;
+      }
+      .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: shimmer 2s infinite;
+      }
+      @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+      }
+      .timeline {
+      position: relative;
+      padding-left: 30px;
+      }
+      .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15px;
+      height: 100%;
+      width: 2px;
+      background: #e9ecef;
+      }
+      .timeline-item {
+      position: relative;
+      padding-bottom: 40px;
+      }
+      .timeline-item:last-child {
+      padding-bottom: 0;
+      }
+      .timeline-dot {
+      position: absolute;
+      left: -30px;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid #4B88A2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      }
+      .timeline-dot::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #4B88A2;
+      opacity: 0;
+      transition: all 0.3s ease;
+      }
+      .timeline-item.active .timeline-dot::before {
+      opacity: 1;
+      }
+      .timeline-card {
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      transform-origin: left;
+      transform: perspective(1000px) rotateY(0deg);
+      }
+      .timeline-card:hover {
+      transform: perspective(1000px) rotateY(5deg);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+      .skill-circle {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      margin: 0 auto 20px;
+      }
+      .skill-circle svg {
+      width: 100%;
+      height: 100%;
+      }
+      .skill-circle circle {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: center;
+      }
+      .skill-circle .bg {
+      stroke: #e9ecef;
+      }
+      .skill-circle .progress {
+      stroke: #4B88A2;
+      stroke-dasharray: 301.59;
+      stroke-dashoffset: 301.59;
+      transition: stroke-dashoffset 1.5s ease;
+      }
+      .skill-circle .percent {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2A2D34;
+      }
+      .skill-tag {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: white;
+      color: #2A2D34;
+      margin: 5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      }
+      .skill-tag::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #4B88A2, #6B66FF);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      }
+      .skill-tag:hover {
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(75, 136, 162, 0.3);
+      }
+      .skill-tag:hover::before {
+      opacity: 1;
+      }
+      .project-card {
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      height: 250px;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+      }
+      .project-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+      }
+      .project-card:hover .project-card-inner {
+      transform: rotateY(180deg);
+      }
+      .project-front, .project-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      }
+      .project-front {
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      }
+      .project-front::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      border-radius: 0 0 8px 8px;
+      }
+      .project-title {
+      color: white;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+      }
+      .project-back {
+      background: white;
+      transform: rotateY(180deg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      }
+      .contact-form .form-group {
+      position: relative;
+      margin-bottom: 25px;
+      }
+      .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      }
+      .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      box-shadow: 0 5px 15px rgba(75, 136, 162, 0.2);
+      }
+      .contact-form label {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      color: #6c757d;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      }
+      .contact-form input:focus + label,
+      .contact-form textarea:focus + label,
+      .contact-form input:not(:placeholder-shown) + label,
+      .contact-form textarea:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 15px;
+      font-size: 12px;
+      background: white;
+      padding: 0 5px;
+      color: #4B88A2;
+      }
+      .submit-btn {
+      position: relative;
+      overflow: hidden;
+      }
+      .submit-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+      }
+      .submit-btn:active::after {
+      width: 300px;
+      height: 300px;
+      }
+      .star-rating {
+      display: inline-flex;
+      font-size: 1.5rem;
+      color: #e9ecef;
+      }
+      .star-rating .star {
+      margin-right: 5px;
+      position: relative;
+      }
+      .star-rating .star.filled {
+      color: #FFD700;
+      text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+      animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+      }
+      .download-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #4B88A2;
+      color: white;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      }
+      .download-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(75, 136, 162, 0.4);
+      }
+      .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: transparent;
+      z-index: 1000;
+      }
+      .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #4B88A2, #6B66FF);
+      width: 0%;
+      }
+      ::-webkit-scrollbar {
+      width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+      background: #4B88A2;
+      border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+      background: #3a6d82;
+      }
+      .dark-mode ::-webkit-scrollbar-track {
+      background: #252A41;
+      }
+      .dark-mode ::-webkit-scrollbar-thumb {
+      background: #6B66FF;
+      }
+      .dark-mode ::-webkit-scrollbar-thumb:hover {
+      background: #5652cc;
+      }
+      @media (max-width: 768px) {
+      .profile-pic {
+      width: 150px;
+      height: 150px;
+      }
+      .skill-circle {
+      width: 100px;
+      height: 100px;
+      }
+      .timeline {
+      padding-left: 20px;
+      }
+      .timeline::before {
+      left: 10px;
+      }
+      .timeline-dot {
+      left: -20px;
+      width: 20px;
+      height: 20px;
+      }
+      .timeline-dot::before {
+      width: 10px;
+      height: 10px;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="download-btn" id="downloadBtn">
+      <i class="ri-download-line ri-lg"></i>
+    </div>
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="resume-container">
+      <!-- Header Section -->
+      <header
+        class="py-20 px-6 md:px-10 flex flex-col items-center text-center"
+      >
+        <div class="profile-pic mb-8">
+          <img
+            src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20man%20with%20short%20dark%20hair%2C%20wearing%20a%20suit%2C%20smiling%20confidently%2C%20studio%20lighting%2C%20high%20quality%2C%20clean%20background&width=400&height=400&seq=1&orientation=squarish"
+            alt="Profile Picture"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-3 typewriter">
+          Alexander Mitchell
+        </h1>
+        <h2 class="text-xl md:text-2xl text-gray-600 mb-6">
+          Senior Software Engineer
+        </h2>
+        <p class="max-w-2xl text-gray-700 mb-8">
+          Passionate software engineer with over 8 years of experience building
+          scalable applications and leading development teams. Specialized in
+          cloud architecture, microservices, and DevOps practices.
+        </p>
+        <div class="flex space-x-4">
+          <a href="#" class="social-link">
+            <i class="ri-linkedin-fill ri-lg"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="ri-github-fill ri-lg"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="ri-twitter-fill ri-lg"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="ri-mail-fill ri-lg"></i>
+          </a>
+        </div>
+      </header>
+      <!-- About Section -->
+      <section class="py-16 px-6 md:px-10 bg-white">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold mb-10 text-center fade-in">About Me</h2>
+          <div class="grid md:grid-cols-2 gap-10">
+            <div class="fade-in">
+              <h3 class="text-xl font-semibold mb-4">Professional Profile</h3>
+              <p class="text-gray-700 mb-6">
+                I'm a results-driven software engineer with a passion for
+                creating elegant solutions to complex problems. With expertise
+                in full-stack development and cloud architecture, I've helped
+                companies transform their digital presence and streamline
+                operations.
+              </p>
+              <h3 class="text-xl font-semibold mb-4">Education</h3>
+              <div class="mb-4">
+                <h4 class="font-medium">Master of Computer Science</h4>
+                <p class="text-gray-600">Stanford University | 2015 - 2017</p>
+              </div>
+              <div>
+                <h4 class="font-medium">
+                  Bachelor of Science in Software Engineering
+                </h4>
+                <p class="text-gray-600">
+                  University of Washington | 2011 - 2015
+                </p>
+              </div>
+            </div>
+            <div class="fade-in">
+              <h3 class="text-xl font-semibold mb-4">Technical Skills</h3>
+              <div class="mb-6">
+                <div class="flex justify-between mb-1">
+                  <span>JavaScript/TypeScript</span>
+                  <span>95%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" data-width="95%"></div>
+                </div>
+              </div>
+              <div class="mb-6">
+                <div class="flex justify-between mb-1">
+                  <span>React & Vue.js</span>
+                  <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" data-width="90%"></div>
+                </div>
+              </div>
+              <div class="mb-6">
+                <div class="flex justify-between mb-1">
+                  <span>Node.js & Express</span>
+                  <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" data-width="85%"></div>
+                </div>
+              </div>
+              <div class="mb-6">
+                <div class="flex justify-between mb-1">
+                  <span>AWS & Cloud Services</span>
+                  <span>80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" data-width="80%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span>Python & Django</span>
+                  <span>75%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" data-width="75%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Experience Section -->
+      <section class="py-16 px-6 md:px-10">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold mb-10 text-center fade-in">
+            Work Experience
+          </h2>
+          <div class="timeline">
+            <div class="timeline-item fade-in">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <h3 class="text-xl font-semibold mb-2">
+                  Senior Software Engineer
+                </h3>
+                <p class="text-primary font-medium mb-3">
+                  TechNova Solutions | 2021 - Present
+                </p>
+                <p class="text-gray-700 mb-4">
+                  Leading a team of 6 developers in building a cloud-native SaaS
+                  platform for enterprise resource planning. Implemented
+                  microservices architecture using Kubernetes and Docker.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >React</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >Node.js</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >AWS</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >Kubernetes</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="timeline-item fade-in">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <h3 class="text-xl font-semibold mb-2">Full Stack Developer</h3>
+                <p class="text-primary font-medium mb-3">
+                  Innovate Digital | 2018 - 2021
+                </p>
+                <p class="text-gray-700 mb-4">
+                  Developed and maintained multiple client projects including
+                  e-commerce platforms and content management systems. Improved
+                  application performance by 40% through code optimization.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >Vue.js</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >Express</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >MongoDB</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >Docker</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="timeline-item fade-in">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <h3 class="text-xl font-semibold mb-2">Software Engineer</h3>
+                <p class="text-primary font-medium mb-3">
+                  Global Tech Inc. | 2017 - 2018
+                </p>
+                <p class="text-gray-700 mb-4">
+                  Worked on a team developing a financial analytics platform.
+                  Implemented RESTful APIs and integrated with third-party
+                  services. Participated in agile development processes.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >Angular</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >Python</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >PostgreSQL</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >REST APIs</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Skills Section -->
+      <section class="py-16 px-6 md:px-10 bg-white">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold mb-10 text-center fade-in">
+            Skills & Expertise
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 fade-in">
+            <div class="text-center">
+              <div class="skill-circle">
+                <svg viewBox="0 0 120 120">
+                  <circle class="bg" cx="60" cy="60" r="54"></circle>
+                  <circle
+                    class="progress"
+                    cx="60"
+                    cy="60"
+                    r="54"
+                    data-percent="95"
+                  ></circle>
+                </svg>
+                <div class="percent">95%</div>
+              </div>
+              <h3 class="font-semibold">Frontend</h3>
+            </div>
+            <div class="text-center">
+              <div class="skill-circle">
+                <svg viewBox="0 0 120 120">
+                  <circle class="bg" cx="60" cy="60" r="54"></circle>
+                  <circle
+                    class="progress"
+                    cx="60"
+                    cy="60"
+                    r="54"
+                    data-percent="85"
+                  ></circle>
+                </svg>
+                <div class="percent">85%</div>
+              </div>
+              <h3 class="font-semibold">Backend</h3>
+            </div>
+            <div class="text-center">
+              <div class="skill-circle">
+                <svg viewBox="0 0 120 120">
+                  <circle class="bg" cx="60" cy="60" r="54"></circle>
+                  <circle
+                    class="progress"
+                    cx="60"
+                    cy="60"
+                    r="54"
+                    data-percent="80"
+                  ></circle>
+                </svg>
+                <div class="percent">80%</div>
+              </div>
+              <h3 class="font-semibold">DevOps</h3>
+            </div>
+            <div class="text-center">
+              <div class="skill-circle">
+                <svg viewBox="0 0 120 120">
+                  <circle class="bg" cx="60" cy="60" r="54"></circle>
+                  <circle
+                    class="progress"
+                    cx="60"
+                    cy="60"
+                    r="54"
+                    data-percent="90"
+                  ></circle>
+                </svg>
+                <div class="percent">90%</div>
+              </div>
+              <h3 class="font-semibold">UI/UX</h3>
+            </div>
+          </div>
+          <div class="mb-12 fade-in">
+            <h3 class="text-xl font-semibold mb-6 text-center">
+              Technical Expertise
+            </h3>
+            <div class="flex flex-wrap justify-center gap-3">
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">Vue.js</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Express</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Django</span>
+              <span class="skill-tag">GraphQL</span>
+              <span class="skill-tag">RESTful APIs</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">AWS</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">CI/CD</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Agile</span>
+            </div>
+          </div>
+          <div class="fade-in">
+            <h3 class="text-xl font-semibold mb-6 text-center">Languages</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-medium mb-2">English</h4>
+                <div class="star-rating">
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Native</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-medium mb-2">Spanish</h4>
+                <div class="star-rating">
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star">★</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Advanced</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-medium mb-2">French</h4>
+                <div class="star-rating">
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Intermediate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Projects Section -->
+      <section class="py-16 px-6 md:px-10">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold mb-10 text-center fade-in">
+            Featured Projects
+          </h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="project-card fade-in">
+              <div class="project-card-inner">
+                <div
+                  class="project-front"
+                  style="background-image: url('https://readdy.ai/api/search-image?query=modern%20dashboard%20interface%20with%20analytics%20charts%20and%20data%20visualization%2C%20clean%20design%2C%20professional%20UI%2C%20business%20application%20screenshot&width=600&height=400&seq=2&orientation=landscape')"
+                >
+                  <div class="project-title">
+                    <h3 class="text-xl font-semibold">
+                      Enterprise Analytics Dashboard
+                    </h3>
+                  </div>
+                </div>
+                <div class="project-back">
+                  <h3 class="text-xl font-semibold mb-3">
+                    Enterprise Analytics Dashboard
+                  </h3>
+                  <p class="text-gray-700 mb-4">
+                    A comprehensive analytics platform for enterprise clients to
+                    visualize and analyze business metrics in real-time.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >React</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >D3.js</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >Node.js</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >GraphQL</span
+                    >
+                  </div>
+                  <a href="#" class="text-primary font-medium hover:underline"
+                    >View Project</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="project-card fade-in">
+              <div class="project-card-inner">
+                <div
+                  class="project-front"
+                  style="background-image: url('https://readdy.ai/api/search-image?query=e-commerce%20mobile%20app%20interface%20showing%20product%20listings%2C%20shopping%20cart%2C%20and%20checkout%20process%2C%20modern%20UI%20design%2C%20professional%20mobile%20application&width=600&height=400&seq=3&orientation=landscape')"
+                >
+                  <div class="project-title">
+                    <h3 class="text-xl font-semibold">E-Commerce Platform</h3>
+                  </div>
+                </div>
+                <div class="project-back">
+                  <h3 class="text-xl font-semibold mb-3">
+                    E-Commerce Platform
+                  </h3>
+                  <p class="text-gray-700 mb-4">
+                    A fully-featured e-commerce solution with inventory
+                    management, payment processing, and customer analytics.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >Vue.js</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >Express</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >MongoDB</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >Stripe API</span
+                    >
+                  </div>
+                  <a href="#" class="text-primary font-medium hover:underline"
+                    >View Project</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="project-card fade-in">
+              <div class="project-card-inner">
+                <div
+                  class="project-front"
+                  style="background-image: url('https://readdy.ai/api/search-image?query=cloud%20infrastructure%20diagram%20showing%20microservices%20architecture%2C%20kubernetes%20clusters%2C%20and%20AWS%20services%2C%20technical%20illustration%2C%20professional&width=600&height=400&seq=4&orientation=landscape')"
+                >
+                  <div class="project-title">
+                    <h3 class="text-xl font-semibold">
+                      Cloud Migration Solution
+                    </h3>
+                  </div>
+                </div>
+                <div class="project-back">
+                  <h3 class="text-xl font-semibold mb-3">
+                    Cloud Migration Solution
+                  </h3>
+                  <p class="text-gray-700 mb-4">
+                    Developed a strategy and implementation plan to migrate
+                    legacy systems to cloud infrastructure, reducing operational
+                    costs by 35%.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >AWS</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >Terraform</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >Docker</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >Kubernetes</span
+                    >
+                  </div>
+                  <a href="#" class="text-primary font-medium hover:underline"
+                    >View Project</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="project-card fade-in">
+              <div class="project-card-inner">
+                <div
+                  class="project-front"
+                  style="background-image: url('https://readdy.ai/api/search-image?query=mobile%20app%20showing%20AI%20chatbot%20interface%20with%20conversation%20bubbles%2C%20modern%20clean%20design%2C%20professional%20mobile%20application%20UI&width=600&height=400&seq=5&orientation=landscape')"
+                >
+                  <div class="project-title">
+                    <h3 class="text-xl font-semibold">AI-Powered Chatbot</h3>
+                  </div>
+                </div>
+                <div class="project-back">
+                  <h3 class="text-xl font-semibold mb-3">AI-Powered Chatbot</h3>
+                  <p class="text-gray-700 mb-4">
+                    Designed and implemented an intelligent chatbot using
+                    natural language processing to improve customer support
+                    efficiency by 60%.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >Python</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >TensorFlow</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >NLP</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                      >Flask</span
+                    >
+                  </div>
+                  <a href="#" class="text-primary font-medium hover:underline"
+                    >View Project</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Contact Section -->
+      <section class="py-16 px-6 md:px-10 bg-white">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold mb-10 text-center fade-in">
+            Get In Touch
+          </h2>
+          <div class="grid md:grid-cols-2 gap-10">
+            <div class="fade-in">
+              <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+              <div class="flex items-start mb-6">
+                <div
+                  class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-4"
+                >
+                  <i class="ri-map-pin-line ri-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium mb-1">Location</h4>
+                  <p class="text-gray-700">San Francisco, California</p>
+                </div>
+              </div>
+              <div class="flex items-start mb-6">
+                <div
+                  class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-4"
+                >
+                  <i class="ri-mail-line ri-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium mb-1">Email</h4>
+                  <p class="text-gray-700">alexander.mitchell@example.com</p>
+                </div>
+              </div>
+              <div class="flex items-start mb-6">
+                <div
+                  class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-4"
+                >
+                  <i class="ri-phone-line ri-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium mb-1">Phone</h4>
+                  <p class="text-gray-700">+1 (415) 555-0123</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-4"
+                >
+                  <i class="ri-global-line ri-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium mb-1">Website</h4>
+                  <p class="text-gray-700">www.alexandermitchell.dev</p>
+                </div>
+              </div>
+            </div>
+            <div class="fade-in">
+              <form class="contact-form">
+                <div class="form-group">
+                  <input type="text" id="name" placeholder=" " />
+                  <label for="name">Your Name</label>
+                </div>
+                <div class="form-group">
+                  <input type="email" id="email" placeholder=" " />
+                  <label for="email">Your Email</label>
+                </div>
+                <div class="form-group">
+                  <input type="text" id="subject" placeholder=" " />
+                  <label for="subject">Subject</label>
+                </div>
+                <div class="form-group">
+                  <textarea id="message" rows="4" placeholder=" "></textarea>
+                  <label for="message">Your Message</label>
+                </div>
+                <button
+                  type="submit"
+                  class="submit-btn w-full py-3 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-all !rounded-button whitespace-nowrap"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer class="py-8 px-6 md:px-10 bg-gray-900 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+          <h3 class="text-xl font-['Pacifico'] mb-4">Alexander Mitchell</h3>
+          <p class="mb-6">
+            Thank you for viewing my resume. I'm looking forward to new
+            opportunities and challenges.
+          </p>
+          <div class="flex justify-center space-x-4 mb-6">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="ri-linkedin-fill ri-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="ri-github-fill ri-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="ri-twitter-fill ri-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="ri-mail-fill ri-lg"></i>
+            </a>
+          </div>
+          <p class="text-gray-500 text-sm">
+            © 2025 Alexander Mitchell. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Progress bar
+        window.addEventListener("scroll", function () {
+          const winScroll =
+            document.body.scrollTop || document.documentElement.scrollTop;
+          const height =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+          const scrolled = (winScroll / height) * 100;
+          document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Download button
+        const downloadBtn = document.getElementById("downloadBtn");
+        downloadBtn.addEventListener("click", function () {
+          alert("Resume PDF download started!");
+          // In a real implementation, this would trigger a PDF download
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Fade-in elements on scroll
+        const fadeElements = document.querySelectorAll(".fade-in");
+        const fadeInOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -100px 0px",
+        };
+        const fadeInObserver = new IntersectionObserver(function (entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              fadeInObserver.unobserve(entry.target);
+            }
+          });
+        }, fadeInOptions);
+        fadeElements.forEach((element) => {
+          fadeInObserver.observe(element);
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Timeline animation
+        const timelineItems = document.querySelectorAll(".timeline-item");
+        const timelineOptions = {
+          threshold: 0.5,
+        };
+        const timelineObserver = new IntersectionObserver(function (
+          entries,
+          observer,
+        ) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              timelineObserver.unobserve(entry.target);
+            }
+          });
+        }, timelineOptions);
+        timelineItems.forEach((item) => {
+          timelineObserver.observe(item);
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Skill bars animation
+        const skillBars = document.querySelectorAll(".skill-progress");
+        const skillOptions = {
+          threshold: 0.5,
+        };
+        const skillObserver = new IntersectionObserver(function (entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const width = entry.target.getAttribute("data-width");
+              entry.target.style.width = width;
+              skillObserver.unobserve(entry.target);
+            }
+          });
+        }, skillOptions);
+        skillBars.forEach((bar) => {
+          skillObserver.observe(bar);
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Skill circles animation
+        const skillCircles = document.querySelectorAll(".skill-circle .progress");
+        const circleOptions = {
+          threshold: 0.5,
+        };
+        const circleObserver = new IntersectionObserver(function (entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const percent = entry.target.getAttribute("data-percent");
+              const circle = entry.target;
+              const radius = circle.getAttribute("r");
+              const circumference = 2 * Math.PI * radius;
+              const offset = circumference - (percent / 100) * circumference;
+              circle.style.strokeDasharray = `${circumference} ${circumference}`;
+              circle.style.strokeDashoffset = offset;
+              circleObserver.unobserve(entry.target);
+            }
+          });
+        }, circleOptions);
+        skillCircles.forEach((circle) => {
+          circleObserver.observe(circle);
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Form validation
+        const contactForm = document.querySelector(".contact-form");
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const nameInput = document.getElementById("name");
+          const emailInput = document.getElementById("email");
+          const messageInput = document.getElementById("message");
+          let isValid = true;
+          if (nameInput.value.trim() === "") {
+            isValid = false;
+          }
+          if (emailInput.value.trim() === "" || !isValidEmail(emailInput.value)) {
+            isValid = false;
+          }
+          if (messageInput.value.trim() === "") {
+            isValid = false;
+          }
+          if (isValid) {
+            alert("Message sent successfully!");
+            contactForm.reset();
+          } else {
+            alert("Please fill all required fields correctly.");
+          }
+        });
+        function isValidEmail(email) {
+          const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return regex.test(email);
+        }
+      });
+      // Smooth scroll behavior
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
