@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Resume</title>
+<script src="https://cdn.tailwindcss.com/3.4.16">
+</script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { primary: "#2563eb", secondary: "#10b981" },
+      borderRadius: {
+        none: "0px",
+        sm: "4px",
+        DEFAULT: "8px",
+        md: "12px",
+        lg: "16px",
+        xl: "20px",
+        "2xl": "24px",
+        "3xl": "32px",
+        full: "9999px",
+        button: "8px",
+      },
+    },
+  },
+};
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Inter', sans-serif;
+}
+body {
+background-color: #fafafa;
+color: #111827;
+overflow-x: hidden;
+}
+.resume-container {
+max-width: 1200px;
+margin: 0 auto;
+position: relative;
+}
+.floating-shape {
+position: absolute;
+border-radius: 50%;
+opacity: 0.05;
+filter: blur(60px);
+z-index: -1;
+animation: float 20s ease-in-out infinite;
+}
+.shape1 {
+width: 400px;
+height: 400px;
+background: #2563eb;
+top: 5%;
+left: -200px;
+animation-delay: 0s;
+}
+.shape2 {
+width: 300px;
+height: 300px;
+background: #10b981;
+top: 35%;
+right: -150px;
+animation-delay: 7s;
+}
+.shape3 {
+width: 350px;
+height: 350px;
+background: #6366f1;
+bottom: 15%;
+left: -175px;
+animation-delay: 13s;
+}
+@keyframes float {
+0% { transform: translateY(0) rotate(0deg); }
+50% { transform: translateY(-20px) rotate(5deg); }
+100% { transform: translateY(0) rotate(0deg); }
+}
+.profile-pic {
+width: 180px;
+height: 180px;
+border-radius: 24px;
+border: none;
+box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+.profile-pic:hover {
+transform: scale(1.05);
+box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+.profile-pic::after {
+content: '';
+position: absolute;
+top: -50%;
+left: -60%;
+width: 200%;
+height: 200%;
+background: linear-gradient(transparent, rgba(255,255,255,0.3), transparent);
+transform: rotate(30deg);
+transition: all 0.8s ease;
+opacity: 0;
+}
+.profile-pic:hover::after {
+left: 100%;
+opacity: 1;
+}
+.typewriter {
+overflow: hidden;
+border-right: 3px solid #4B88A2;
+white-space: nowrap;
+margin: 0 auto;
+animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+@keyframes typing {
+from { width: 0 }
+to { width: 100% }
+}
+@keyframes blink-caret {
+from, to { border-color: transparent }
+50% { border-color: #4B88A2 }
+}
+.fade-in {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.social-link {
+width: 44px;
+height: 44px;
+border-radius: 12px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+background: #2563eb;
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+overflow: hidden;
+}
+.social-link:hover {
+transform: translateY(-5px);
+box-shadow: 0 5px 15px rgba(75, 136, 162, 0.4);
+}
+.social-link::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(255,255,255,0.1);
+transform: scale(0);
+transition: all 0.3s ease;
+border-radius: 50%;
+}
+.social-link:hover::before {
+transform: scale(1.5);
+opacity: 0;
+}
+.skill-bar {
+height: 6px;
+border-radius: 999px;
+background: #f3f4f6;
+margin-bottom: 20px;
+position: relative;
+overflow: hidden;
+}
+.skill-progress {
+height: 100%;
+border-radius: 999px;
+background: linear-gradient(90deg, #2563eb, #10b981);
+position: relative;
+width: 0;
+transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.skill-progress::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+0% { transform: translateX(-100%); }
+100% { transform: translateX(100%); }
+}
+.timeline {
+position: relative;
+padding-left: 30px;
+}
+.timeline::before {
+content: '';
+position: absolute;
+top: 0;
+left: 15px;
+height: 100%;
+width: 2px;
+background: #e9ecef;
+}
+.timeline-item {
+position: relative;
+padding-bottom: 40px;
+}
+.timeline-item:last-child {
+padding-bottom: 0;
+}
+.timeline-dot {
+position: absolute;
+left: -30px;
+top: 0;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+background: white;
+border: 2px solid #4B88A2;
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 1;
+}
+.timeline-dot::before {
+content: '';
+width: 14px;
+height: 14px;
+border-radius: 50%;
+background: #4B88A2;
+opacity: 0;
+transition: all 0.3s ease;
+}
+.timeline-item.active .timeline-dot::before {
+opacity: 1;
+}
+.timeline-card {
+background: white;
+border-radius: 16px;
+padding: 30px;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+transform-origin: left;
+transform: perspective(1000px) rotateY(0deg);
+border: 1px solid rgba(0,0,0,0.05);
+}
+.timeline-card:hover {
+transform: perspective(1000px) rotateY(5deg);
+box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.skill-circle {
+width: 120px;
+height: 120px;
+position: relative;
+margin: 0 auto 20px;
+}
+.skill-circle svg {
+width: 100%;
+height: 100%;
+}
+.skill-circle circle {
+fill: none;
+stroke-width: 8;
+stroke-linecap: round;
+transform: rotate(-90deg);
+transform-origin: center;
+}
+.skill-circle .bg {
+stroke: #e9ecef;
+}
+.skill-circle .progress {
+stroke: #4B88A2;
+stroke-dasharray: 301.59;
+stroke-dashoffset: 301.59;
+transition: stroke-dashoffset 1.5s ease;
+}
+.skill-circle .percent {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 1.5rem;
+font-weight: 600;
+color: #2A2D34;
+}
+.skill-tag {
+display: inline-block;
+padding: 8px 16px;
+border-radius: 20px;
+background: white;
+color: #2A2D34;
+margin: 5px;
+box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+.skill-tag::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, #4B88A2, #6B66FF);
+opacity: 0;
+transition: opacity 0.3s ease;
+z-index: -1;
+}
+.skill-tag:hover {
+color: white;
+transform: translateY(-3px);
+box-shadow: 0 5px 15px rgba(75, 136, 162, 0.3);
+}
+.skill-tag:hover::before {
+opacity: 1;
+}
+.project-card {
+border-radius: 8px;
+overflow: hidden;
+position: relative;
+height: 250px;
+perspective: 1000px;
+transform-style: preserve-3d;
+transition: transform 0.8s;
+}
+.project-card-inner {
+position: relative;
+width: 100%;
+height: 100%;
+transform-style: preserve-3d;
+transition: transform 0.8s;
+}
+.project-card:hover .project-card-inner {
+transform: rotateY(180deg);
+}
+.project-front, .project-back {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+border-radius: 8px;
+}
+.project-front {
+background-size: cover;
+background-position: center;
+display: flex;
+align-items: flex-end;
+}
+.project-front::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 50%;
+background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+border-radius: 0 0 8px 8px;
+}
+.project-title {
+color: white;
+padding: 20px;
+position: relative;
+z-index: 1;
+}
+.project-back {
+background: white;
+transform: rotateY(180deg);
+padding: 20px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.contact-form .form-group {
+position: relative;
+margin-bottom: 25px;
+}
+.contact-form input, .contact-form textarea {
+width: 100%;
+padding: 15px 20px;
+border: none;
+border-radius: 8px;
+background: white;
+box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+transition: all 0.3s ease;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+outline: none;
+box-shadow: 0 5px 15px rgba(75, 136, 162, 0.2);
+}
+.contact-form label {
+position: absolute;
+top: 15px;
+left: 20px;
+color: #6c757d;
+transition: all 0.3s ease;
+pointer-events: none;
+}
+.contact-form input:focus + label,
+.contact-form textarea:focus + label,
+.contact-form input:not(:placeholder-shown) + label,
+.contact-form textarea:not(:placeholder-shown) + label {
+top: -10px;
+left: 15px;
+font-size: 12px;
+background: white;
+padding: 0 5px;
+color: #4B88A2;
+}
+.submit-btn {
+position: relative;
+overflow: hidden;
+}
+.submit-btn::after {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+width: 0;
+height: 0;
+background: rgba(255,255,255,0.2);
+border-radius: 50%;
+transform: translate(-50%, -50%);
+transition: width 0.6s ease, height 0.6s ease;
+}
+.submit-btn:active::after {
+width: 300px;
+height: 300px;
+}
+.star-rating {
+display: inline-flex;
+font-size: 1.5rem;
+color: #e9ecef;
+}
+.star-rating .star {
+margin-right: 5px;
+position: relative;
+}
+.star-rating .star.filled {
+color: #FFD700;
+text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+animation: pulse 2s infinite;
+}
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.1); }
+100% { transform: scale(1); }
+}
+.download-btn {
+position: fixed;
+bottom: 20px;
+right: 20px;
+z-index: 1000;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+background: #4B88A2;
+color: white;
+box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+.download-btn:hover {
+transform: scale(1.1);
+box-shadow: 0 5px 15px rgba(75, 136, 162, 0.4);
+}
+.progress-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 5px;
+background: transparent;
+z-index: 1000;
+}
+.progress-bar {
+height: 100%;
+background: linear-gradient(90deg, #4B88A2, #6B66FF);
+width: 0%;
+}
+::-webkit-scrollbar {
+width: 10px;
+}
+::-webkit-scrollbar-track {
+background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+background: #4B88A2;
+border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #3a6d82;
+}
+.dark-mode ::-webkit-scrollbar-track {
+background: #252A41;
+}
+.dark-mode ::-webkit-scrollbar-thumb {
+background: #6B66FF;
+}
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+background: #5652cc;
+}
+.certificate-card {
+background: white;
+border-radius: 16px;
+overflow: hidden;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+border: 1px solid rgba(0,0,0,0.05);
+}
+.certificate-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.certificate-image {
+height: 200px;
+overflow: hidden;
+position: relative;
+}
+.certificate-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+.certificate-card:hover .certificate-image img {
+transform: scale(1.1);
+}
+.certificate-content {
+padding: 20px;
+}
+.certificate-badge {
+display: inline-flex;
+align-items: center;
+padding: 6px 12px;
+background: rgba(75, 136, 162, 0.1);
+color: #4B88A2;
+border-radius: 20px;
+font-size: 0.875rem;
+margin-bottom: 12px;
+}
+.certificate-badge i {
+margin-right: 6px;
+}
+.certificate-issuer {
+display: flex;
+align-items: center;
+margin-top: 15px;
+}
+.issuer-logo {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+margin-right: 10px;
+}
+.certificate-date {
+color: #6c757d;
+font-size: 0.875rem;
+}
+@media (max-width: 768px) {
+.profile-pic {
+width: 150px;
+height: 150px;
+}
+.skill-circle {
+width: 100px;
+height: 100px;
+}
+.timeline {
+padding-left: 20px;
+}
+.timeline::before {
+left: 10px;
+}
+.timeline-dot {
+left: -20px;
+width: 20px;
+height: 20px;
+}
+.timeline-dot::before {
+width: 10px;
+height: 10px;
+}
+}
+</style>
+</head>
+<body>
+<div class="progress-container">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+<div class="download-btn" id="downloadBtn">
+<i class="ri-download-line ri-lg"></i>
+</div>
+<div class="floating-shape shape1"></div>
+<div class="floating-shape shape2"></div>
+<div class="floating-shape shape3"></div>
+<div class="resume-container">
+<!-- Header Section -->
+<header class="py-20 px-6 md:px-10 flex flex-col items-center text-center">
+<div class="profile-pic mb-8">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20man%20with%20short%20dark%20hair%2C%20wearing%20a%20suit%2C%20smiling%20confidently%2C%20studio%20lighting%2C%20high%20quality%2C%20clean%20background&width=400&height=400&seq=1&orientation=squarish" alt="Profile Picture" class="w-full h-full object-cover">
+</div>
+<h1 class="text-4xl md:text-5xl font-bold mb-3 typewriter">James Anderson</h1>
+<h2 class="text-xl md:text-2xl text-gray-600 mb-6">Computer Science Student</h2>
+<p class="max-w-2xl text-gray-700 mb-8">Enthusiastic computer science student with a strong foundation in programming and problem-solving. Eager to gain hands-on experience through internships and contribute to innovative projects while learning from industry professionals.</p>
+<div class="flex space-x-4">
+<a href="#" class="social-link">
+<i class="ri-linkedin-fill ri-lg"></i>
+</a>
+<a href="#" class="social-link">
+<i class="ri-github-fill ri-lg"></i>
+</a>
+<a href="#" class="social-link">
+<i class="ri-twitter-fill ri-lg"></i>
+</a>
+<a href="#" class="social-link">
+<i class="ri-mail-fill ri-lg"></i>
+</a>
+</div>
+</header>
+<!-- About Section -->
+<section class="py-16 px-6 md:px-10 bg-white">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-3xl font-bold mb-10 text-center fade-in">About Me</h2>
+<div class="grid md:grid-cols-2 gap-10">
+<div class="fade-in">
+<h3 class="text-xl font-semibold mb-4">Academic Profile</h3>
+<p class="text-gray-700 mb-6">I'm a third-year computer science student passionate about software development and emerging technologies. Strong academic performance with a focus on practical programming projects and collaborative teamwork.</p>
+<h3 class="text-xl font-semibold mb-4">Education</h3>
+<div class="mb-4">
+<h4 class="font-medium">Bachelor of Science in Computer Science</h4>
+<p class="text-gray-600">University of California, Berkeley | Expected 2025</p>
+<p class="text-gray-600 mt-2">GPA: 3.8/4.0</p>
+<div class="mt-4">
+<h5 class="font-medium mb-2">Relevant Coursework</h5>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Data Structures</span>
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Algorithms</span>
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Web Development</span>
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Database Systems</span>
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Machine Learning</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fade-in">
+<h3 class="text-xl font-semibold mb-4">Technical Skills</h3>
+<div class="mb-6">
+<div class="flex justify-between mb-1">
+<span>JavaScript/TypeScript</span>
+<span>95%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" data-width="95%"></div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex justify-between mb-1">
+<span>React & Vue.js</span>
+<span>90%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" data-width="90%"></div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex justify-between mb-1">
+<span>Node.js & Express</span>
+<span>85%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" data-width="85%"></div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex justify-between mb-1">
+<span>AWS & Cloud Services</span>
+<span>80%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" data-width="80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span>Python & Django</span>
+<span>75%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" data-width="75%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Certificates Section -->
+<section class="py-16 px-6 md:px-10">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-3xl font-bold mb-10 text-center fade-in">Professional Certificates</h2>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="certificate-card fade-in">
+<div class="certificate-image">
+<img src="https://readdy.ai/api/search-image?query=professional%20certification%20badge%20with%20AWS%20logo%2C%20cloud%20computing%20symbols%2C%20modern%20design%2C%20clean%20background&width=600&height=400&seq=6&orientation=landscape" alt="AWS Certificate">
+</div>
+<div class="certificate-content">
+<div class="certificate-badge">
+<i class="ri-award-fill"></i>
+<span>AWS Certified Solutions Architect</span>
+</div>
+<h3 class="text-lg font-semibold mb-2">Professional Level Certification</h3>
+<p class="text-gray-700 mb-3">Comprehensive certification demonstrating expertise in designing distributed systems on AWS.</p>
+<div class="certificate-issuer">
+<img src="https://readdy.ai/api/search-image?query=aws%20logo%20simple%20icon&width=60&height=60&seq=7&orientation=squarish" alt="AWS" class="issuer-logo">
+<div>
+<p class="font-medium">Amazon Web Services</p>
+<p class="certificate-date">Issued Apr 2024 · Expires Apr 2027</p>
+</div>
+</div>
+</div>
+</div>
+<div class="certificate-card fade-in">
+<div class="certificate-image">
+<img src="https://readdy.ai/api/search-image?query=professional%20certification%20badge%20with%20Google%20Cloud%20logo%2C%20modern%20tech%20design%2C%20clean%20background&width=600&height=400&seq=8&orientation=landscape" alt="Google Cloud Certificate">
+</div>
+<div class="certificate-content">
+<div class="certificate-badge">
+<i class="ri-award-fill"></i>
+<span>Google Cloud Professional Architect</span>
+</div>
+<h3 class="text-lg font-semibold mb-2">Professional Cloud Architect</h3>
+<p class="text-gray-700 mb-3">Advanced certification in designing, developing, and managing dynamic solutions on Google Cloud.</p>
+<div class="certificate-issuer">
+<img src="https://readdy.ai/api/search-image?query=google%20cloud%20platform%20logo%20simple%20icon&width=60&height=60&seq=9&orientation=squarish" alt="Google Cloud" class="issuer-logo">
+<div>
+<p class="font-medium">Google Cloud</p>
+<p class="certificate-date">Issued Jan 2024 · Expires Jan 2026</p>
+</div>
+</div>
+</div>
+</div>
+<div class="certificate-card fade-in">
+<div class="certificate-image">
+<img src="https://readdy.ai/api/search-image?query=professional%20certification%20badge%20with%20Microsoft%20Azure%20logo%2C%20cloud%20technology%20symbols%2C%20modern%20design&width=600&height=400&seq=10&orientation=landscape" alt="Azure Certificate">
+</div>
+<div class="certificate-content">
+<div class="certificate-badge">
+<i class="ri-award-fill"></i>
+<span>Microsoft Azure Solutions Architect</span>
+</div>
+<h3 class="text-lg font-semibold mb-2">Expert Level Certification</h3>
+<p class="text-gray-700 mb-3">Expert-level certification in designing and implementing solutions on Microsoft Azure.</p>
+<div class="certificate-issuer">
+<img src="https://readdy.ai/api/search-image?query=microsoft%20azure%20logo%20simple%20icon&width=60&height=60&seq=11&orientation=squarish" alt="Microsoft Azure" class="issuer-logo">
+<div>
+<p class="font-medium">Microsoft</p>
+<p class="certificate-date">Issued Mar 2024 · Expires Mar 2026</p>
+</div>
+</div>
+</div>
+</div>
+<div class="certificate-card fade-in">
+<div class="certificate-image">
+<img src="https://readdy.ai/api/search-image?query=professional%20certification%20badge%20with%20Kubernetes%20logo%2C%20container%20orchestration%20symbols%2C%20modern%20tech%20design&width=600&height=400&seq=12&orientation=landscape" alt="Kubernetes Certificate">
+</div>
+<div class="certificate-content">
+<div class="certificate-badge">
+<i class="ri-award-fill"></i>
+<span>Certified Kubernetes Administrator</span>
+</div>
+<h3 class="text-lg font-semibold mb-2">CKA Certification</h3>
+<p class="text-gray-700 mb-3">Advanced certification in managing and orchestrating containerized applications with Kubernetes.</p>
+<div class="certificate-issuer">
+<img src="https://readdy.ai/api/search-image?query=kubernetes%20logo%20simple%20icon&width=60&height=60&seq=13&orientation=squarish" alt="Kubernetes" class="issuer-logo">
+<div>
+<p class="font-medium">Cloud Native Computing Foundation</p>
+<p class="certificate-date">Issued Feb 2024 · Expires Feb 2026</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Awards & Projects Section -->
+<section class="py-16 px-6 md:px-10 bg-white">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-3xl font-bold mb-10 text-center fade-in">Awards & Projects</h2>
+<!-- Awards -->
+<div class="mb-16">
+<h3 class="text-2xl font-semibold mb-8 fade-in">Academic Awards</h3>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow fade-in">
+<div class="flex items-center mb-4">
+<i class="ri-medal-fill text-yellow-500 text-2xl mr-3"></i>
+<h4 class="text-lg font-semibold">Dean's List</h4>
+</div>
+<p class="text-gray-700">Achieved academic excellence with GPA above 3.8 for three consecutive semesters</p>
+<p class="text-gray-500 mt-2">2023 - 2024</p>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow fade-in">
+<div class="flex items-center mb-4">
+<i class="ri-trophy-fill text-primary text-2xl mr-3"></i>
+<h4 class="text-lg font-semibold">Hackathon Winner</h4>
+</div>
+<p class="text-gray-700">First place in University Annual Hackathon for developing an AI-powered study assistant</p>
+<p class="text-gray-500 mt-2">October 2023</p>
+</div>
+</div>
+</div>
+<!-- Projects -->
+<div>
+<h3 class="text-2xl font-semibold mb-8 fade-in">Featured Projects</h3>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all fade-in">
+<img src="https://readdy.ai/api/search-image?query=modern%20AI%20chatbot%20interface%20design%2C%20clean%20minimal%20UI%2C%20light%20theme&width=600&height=300&seq=14&orientation=landscape" alt="AI Study Assistant" class="w-full h-48 object-cover">
+<div class="p-6">
+<h4 class="text-lg font-semibold mb-3">AI Study Assistant</h4>
+<p class="text-gray-700 mb-4">Developed an AI-powered study assistant using OpenAI's GPT-3 API and React. Features include smart note-taking, quiz generation, and study schedule optimization.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">React</span>
+<span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">OpenAI API</span>
+<span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Node.js</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all fade-in">
+<img src="https://readdy.ai/api/search-image?query=modern%20eco-friendly%20smart%20home%20dashboard%20interface%2C%20minimal%20design&width=600&height=300&seq=15&orientation=landscape" alt="Smart Home Dashboard" class="w-full h-48 object-cover">
+<div class="p-6">
+<h4 class="text-lg font-semibold mb-3">Smart Home Energy Monitor</h4>
+<p class="text-gray-700 mb-4">Created a real-time energy monitoring dashboard for smart homes using IoT sensors. Implemented machine learning for energy usage prediction and optimization.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Vue.js</span>
+<span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">TensorFlow</span>
+<span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">AWS IoT</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<script>
+// Progress bar
+window.onscroll = function () {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  document.getElementById("progressBar").style.width = scrolled + "%";
+};
+// Fade in animation
+const fadeElements = document.querySelectorAll(".fade-in");
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+});
+fadeElements.forEach((element) => {
+  observer.observe(element);
+});
+// Skill bars animation
+const skillBars = document.querySelectorAll(".skill-progress");
+skillBars.forEach((bar) => {
+  const width = bar.getAttribute("data-width");
+  setTimeout(() => {
+    bar.style.width = width;
+  }, 500);
+});
+// Download button
+document.getElementById("downloadBtn").addEventListener("click", () => {
+  window.print();
+});
+</script>
+</body>
+</html>
